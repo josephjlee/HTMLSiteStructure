@@ -21,9 +21,7 @@ require_once CORE.'Page'.DINT.'Meta'.FINT;
 class Meta implements iMeta, iContent {
 	
 	//
-	const SUBDOMAIN = 'https://static.puretechno.de';
-	
-	
+	const SUBDOMAIN = 'static.your-domain.com';
 	
 	//
 	public $detect;
@@ -40,7 +38,7 @@ class Meta implements iMeta, iContent {
 	}//Eof Construct
 
 /**
- * 
+ * Placeholder method 
  *
  * @param 
  */	

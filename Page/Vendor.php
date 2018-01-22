@@ -56,7 +56,7 @@ class Vendor implements iVendor {
 	const USE_HOWLER = true;
 	
 	//
-	const SUBDOMAIN = 'https://static.puretechno.de';
+	const SUBDOMAIN = 'static.your-domain.com';
 	
 	//
 	const FILE_DIR_CSS = '/assets/css/vendor/';

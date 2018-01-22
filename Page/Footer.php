@@ -49,12 +49,6 @@ class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
 	use	RessourceManagement\SplashRessourceManagement,
 		RessourceManagement\BrandRessourceManagement,
 		RessourceManagement\JavaScriptRessourceManagement;
-		
-	/*{
-			RessourceManagement\BrandRessourceManagement::brand insteadof RessourceManagement\SplashRessourceManagement;
-			RessourceManagement\SplashRessourceManagement::splash as public splash;
-			RessourceManagement\BrandRessourceManagement::brand as public brand;
-	}*
 
 /**
  * Construct an instance of this class

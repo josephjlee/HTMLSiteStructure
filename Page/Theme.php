@@ -21,7 +21,7 @@ require_once CORE.'Page'.DINT.'Theme'.FINT;
 class Theme implements iTheme {
 
 	//
-	const SUBDOMAIN = 'https://static.puretechno.de';
+	const SUBDOMAIN = 'static.your-domain.com';
 
 	//
 	const FILE_CORE = 'core';
