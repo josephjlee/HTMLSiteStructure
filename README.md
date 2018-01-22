@@ -15,10 +15,10 @@ I used this dir-structure for my library at my root webhosting-package:
   - /webservice/
 
 I used this dir-structure for my domains at my root webhosting-package:
-  - <domain-name-1>
-  - <domain-name-2>
-  - <domain-name-3>
-  - <domain-name-4>
+  - /domain-name-1/
+  - /domain-name-2/
+  - /domain-name-3/
+  - /domain-name-4/
     ... and so on
     
 I put all my static files like images, css and javascripts into a static subdomain. Looks like this:
