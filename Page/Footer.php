@@ -9,7 +9,7 @@
  *
  * @version    0.0.1
  */
-namespace Dmount\SiteStructure;
+namespace Dmount\HTMLSiteStructure;
 
 use Dmount\Core\{
 	HttpManagement\Mobile_Detect as Mobile_Detect
@@ -17,9 +17,14 @@ use Dmount\Core\{
  
 //Loading interface & traits
 require_once CORE.'Page'.DINT.'Footer'.FINT;
-require_once CORE.'Page'.DTRA.'ScreenRessourceManagement'.FTRA;
+require_once CORE.'Page'.DINT.'jQuery'.FINT;
+require_once CORE.'Page'.DINT.'Splash'.FINT;
+require_once CORE.'Page'.DINT.'Brand'.FINT;
+require_once CORE.'Page'.DTRA.'JavascriptRessourceManagement'.FTRA;
+require_once CORE.'Page'.DTRA.'BrandRessourceManagement'.FTRA;
+require_once CORE.'Page'.DTRA.'SplashRessourceManagement'.FTRA;
 
-class Footer implements iFooter, iContent {
+class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
 	
 	//Configuration
 	const USE_COMMENTS = false;
@@ -31,14 +36,25 @@ class Footer implements iFooter, iContent {
 	public $pageHeaderID; 
 	public $pageSubtitleID; 
 	public $pageBrandID;
+	
+	//
+	private $animTypes=array();
 
 	//
 	public $detect;
 	public $layout;
 	public $vendor;
 
-	//Trait
-	use ScreenRessourceManagement;
+	//Trait		
+	use	RessourceManagement\SplashRessourceManagement,
+		RessourceManagement\BrandRessourceManagement,
+		RessourceManagement\JavaScriptRessourceManagement;
+		
+	/*{
+			RessourceManagement\BrandRessourceManagement::brand insteadof RessourceManagement\SplashRessourceManagement;
+			RessourceManagement\SplashRessourceManagement::splash as public splash;
+			RessourceManagement\BrandRessourceManagement::brand as public brand;
+	}*
 
 /**
  * Construct an instance of this class
@@ -69,10 +85,7 @@ class Footer implements iFooter, iContent {
 		
 		if(self::USE_SPLASH)
 		{
-			$this->pageID = '#page-'.self::NAME_SPLASH;
-			$this->pageHeaderID = '#page-'.self::NAME_SPLASH.'-header';
-			$this->pageSubtitleID = '#page-'.self::NAME_SPLASH.'-subtitle';
-			$this->pageBrandID = '#page-'.self::NAME_SPLASH.'-brand';
+			$this->setSplashID();
 		}
 		else $this->setPageID();
 		
@@ -94,34 +107,13 @@ class Footer implements iFooter, iContent {
 	}//Eof Method "setPageID"
 
 /**
- * If jQuery is used:
- *	- create the brand object
- * 	- includes the splash screen animation, if used
- *
- * @param 
- */
-	public function jQuery_DocReady(){
-		
-		return '<script>
-				$(document).ready(function(){
-					var pageBrand=new Brand;
-					var timeoutSteps=5000;
-					$(\''.$this->pageBrandID.'\').addClass(\'brand\');
-					$(\''.$this->pageSubtitleID.'\').addClass(\'subtitle fal fa-lg animated zoomInLeft\');
-					'.(self::USE_SPLASH?$this->setScreen():'').'
-				});/* /eof document.ready */
-    			</script>';
-		
-	}//Eof Function "jQuery_DocReady"
-
-/**
  * 
  *
  * @param 
  */	
 	public function setContent(){
 
-		return $this->jQuery_DocReady().$this->vendor->setJS_Group('footer');
+		return $this->jQuery_DocReady($this->brand()).$this->vendor->setJS_Group('footer');
 		
 	}//Eof Method "setContent"
 	

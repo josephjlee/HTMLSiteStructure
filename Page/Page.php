@@ -9,7 +9,7 @@
  *
  * @version    0.0.1
  */
-namespace Dmount\SiteStructure;
+namespace Dmount\HTMLSiteStructure;
 
 //Interface
 require_once CORE.'Page'.DINT.'Content'.FINT;
@@ -63,6 +63,13 @@ class Page implements iPage, iContent {
 		$this->setContent();
 	
 	}//Eof Construct
+
+/**
+ * 
+ *
+ * @param 
+ */	
+	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
 
 /**
  * 

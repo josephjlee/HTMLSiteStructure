@@ -9,7 +9,7 @@
  *
  * @version    0.0.1
  */
-namespace Dmount\SiteStructure;
+namespace Dmount\HTMLSiteStructure;
 
 use Dmount\Core\{
 	HttpManagement\Mobile_Detect as Mobile_Detect
@@ -45,6 +45,13 @@ class Layout implements iLayout, iContent {
 		$this->setContentDepth();
 		
 	}//Eof Construct
+
+/**
+ * 
+ *
+ * @param 
+ */	
+	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
 
 /**
  * 

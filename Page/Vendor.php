@@ -31,7 +31,7 @@
  *
  * @version    0.0.1
  */ 
-namespace Dmount\SiteStructure;
+namespace Dmount\HTMLSiteStructure;
 
 use Dmount\Core\{
 	HttpManagement\Mobile_Detect as Mobile_Detect
@@ -46,13 +46,13 @@ class Vendor implements iVendor {
 	const USE_VENDOR = true;
 	
 	// CDN Cloud
-	const USE_CDNJS = false;
+	const USE_CDN = false;
 	
 	//Configurations (Boolean)
 	const USE_FONTAWESOME = true;
 	const USE_BOOTSTRAP = true;
 	const USE_JQUERY = true;
-	const USE_ANIMATED = true;
+	const USE_ANIMATE = true;
 	const USE_HOWLER = true;
 	
 	//
@@ -102,9 +102,9 @@ class Vendor implements iVendor {
 		switch($typeOf)
 		{
 			case 'head':
-				return $this->setCSS_FontAwesome().
-					   $this->setCSS_BootsTrap().
-					   $this->setCSS_Animate();
+				return ((self::USE_FONTAWESOME)?$this->setCSS_FontAwesome():'').
+					   ((self::USE_BOOTSTRAP)?$this->setCSS_BootsTrap():'').
+					   ((self::USE_ANIMATE)?$this->setCSS_Animate():'');
 			break;
 			case 'head-extend':
 				return $this->setExtCSS_FullPage();

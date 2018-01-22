@@ -9,7 +9,7 @@
  *
  * @version    0.0.1
  */
-namespace Dmount\SiteStructure;
+namespace Dmount\HTMLSiteStructure;
 
 use Dmount\Core\{
 	HttpManagement\Mobile_Detect as Mobile_Detect
@@ -20,9 +20,14 @@ require_once CORE.'Page'.DINT.'Header'.FINT;
  
 class Header implements iHeader, iContent {
 	
+	//
+	const BRAND_TITLE_MOBILE = 'DMOUNT';
+	
+	//
 	const USE_SPLASH = true;
 	const NAME_SPLASH = 'splash';
 	const SUBTITLE_SPLASH = 'A BERLIN BASED WEBDEVELOPMENT, ART & MUSIC PROJECT';
+	const SUBTITLE_SPLASH_MOBILE = 'WEB, ART & MUSIC PROJECT';
 	
 	//
 	public $pageID;
@@ -84,9 +89,9 @@ class Header implements iHeader, iContent {
 		
 		return '<!-- bof header -->
 				<header class="container splash brand text-center">
-					<h1 class="mt0">DMOUNT</h1>
+					<h1 class="mt0">'.self::BRAND_TITLE_MOBILE.'</h1>
 					<hr class="text-black">
-					<p class="text-black">WEB, ART & MUSIC PROJECT</p>
+					<p class="text-black">'.self::SUBTITLE_SPLASH_MOBILE.'</p>
 					<hr class="text-black">
 				</header>
     			<!-- /eof header -->';
