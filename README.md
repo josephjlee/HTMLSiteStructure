@@ -19,7 +19,8 @@ I used this dir-structure for my domains at my root webhosting-package:
   - /domain-name-2/
   - /domain-name-3/
   - /domain-name-4/
-    ... and so on
+
+  ... and so on
     
 I put all my static files like images, css and javascripts into a static subdomain. Looks like this:
   - <static.my-domain.com>/assets/css/
@@ -31,6 +32,7 @@ In the dir /core/ I put my HTMLSiteStructure and MobileDetect. Should looks like
   - /core/Page/
   - /core/Page/Interfaces/
   - /core/Page/Traits/
+  - /core/Http/MobileDetect.php
 
-  - /core/Http/MobileDetect
+The file /cms.php is placed in the dir /core/. This file includes some configuration settings.
 
