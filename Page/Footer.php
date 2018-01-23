@@ -71,7 +71,9 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
 	}//Eof Construct
 
 /**
- * 
+ * Callback method for splash screen.
+ * Get page id's from html body, when splash is used
+ * otherwise set page id without the usage of splash
  *
  * @param 
  */
@@ -86,7 +88,9 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
 	}//Eof Method "getPageID"
 
 /**
- * 
+ * Set page id's for header, brand and subtitle.
+ * If splash is used, this method sets a pound for
+ * the last tween in splash screen.
  *
  * @param 
  */
@@ -101,7 +105,10 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
 	}//Eof Method "setPageID"
 
 /**
- * 
+ * Set the content.
+ * Returns the jQuery document.ready functionality, if used
+ * and let load the sources for javascript api, extensions and tools in group
+ * sorted and described in vendor class
  *
  * @param 
  */	
