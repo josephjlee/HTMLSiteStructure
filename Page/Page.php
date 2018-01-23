@@ -17,7 +17,7 @@ require_once CORE.'Page'.DINT.'Page'.FINT;
 
 //Page Config & Meta
 require_once CORE.'Page/Meta.php'; $meta = new Meta($detect);
-require_once CORE.'Page/Vendor.php'; $vendor = new Vendor($detect);
+require_once CORE.'Page/Vendor.php'; $vendor = new Vendor();
 require_once CORE.'Page/Layout.php'; $layout = new Layout($detect);
 require_once CORE.'Page/Theme.php'; $theme = new Theme($detect);
 //Page Content
@@ -38,16 +38,16 @@ class Page implements iPage, iContent {
  * @param 
  */	
 	public function __construct(
-								Meta $meta,
-								Vendor $vendor,
-								Theme $theme,
-								Preloader $preloader,
-								Header $header,
-								Navigation $navigation,
-								Sections $sections,
-								Layout $layout,
-								Footer $footer
-								)
+				    Meta $meta,
+				    Vendor $vendor,
+				    Theme $theme,
+				    Preloader $preloader,
+				    Header $header,
+				    Navigation $navigation,
+				    Sections $sections,
+				    Layout $layout,
+				    Footer $footer
+				    )
 	{
 		
 		$this->meta = $meta;
@@ -65,7 +65,7 @@ class Page implements iPage, iContent {
 	}//Eof Construct
 
 /**
- * 
+ * Placeholder method
  *
  * @param 
  */	
@@ -154,7 +154,7 @@ class Page implements iPage, iContent {
  */	
 	public function setContent(){
 		
-		echo $this->doctype().$this->html();
+		echo $this->doctype().PHP_EOL.$this->html();
 		
 	}//Eof Method "setContent"
 	
