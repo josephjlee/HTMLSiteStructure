@@ -21,6 +21,14 @@ define('FINT','.int.php');
 define('DTRA','/Traits/');
 define('FTRA','.php');
 
+//Define Static Ressources
+define('STATIC_SSL',true);
+$staticSSL=(STATIC_SSL)?'https://':'http://';
+define('STATIC_SUBDOMAIN',$staticSSL.'static.puretechno.de');
+define('STATIC_IMG','/assets/images');
+define('STATIC_CSS','/assets/css');
+define('STATIC_JS','/assets/js');
+
 //Include and instantiate classes
 
 //Vendor Classes
