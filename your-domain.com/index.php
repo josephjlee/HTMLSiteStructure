@@ -11,7 +11,7 @@
  * @constant   CORE => define path to core library
  * @constant   CMS =>  define core file
  * @require	   cms.php
- * @call	   dm_Page
+ * @call	     Page
  *
  */
 define('CORE',$_SERVER['DOCUMENT_ROOT'].'/core/');
