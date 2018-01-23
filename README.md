@@ -2,7 +2,9 @@
 A HTML-Boilerplate written in PHP 7 for output as template
 
 # My Intention:
-I had a break of five years from programming. I'm teaching myself with a project the new standards fo writting codes in PHP, Java, Python, Javascript, Css to name a few. Have a inside view of my way of thinking how it has to be (or 'better' not). Actually, I decided to do my own work-around to output a well-formed HTML template. 
+I had a break of five years from programming. I'm teaching myself with a project the new standards fo writting codes in PHP, Java, Python, Javascript, Css to name a few. Have a inside view of my way of thinking how it has to be (or 'better' not). I try not to invent the wheel from new on. On some cases I will use other libraries for better stability. 
+
+Actually, I decided to do my own work-around to output a well-formed HTML template. This gives me the possibility having a full control of my templates. 
 
 # Configuration:
 First: It is optional to use it. It's for free, but it's not stable. Therefore I give no warranty for the usage of this code.
@@ -35,4 +37,28 @@ In the dir /core/ I put my HTMLSiteStructure and MobileDetect. Should looks like
   - /core/Http/MobileDetect.php
 
 The file /cms.php is placed in the dir /core/. This file includes some configuration settings.
+
+# Namespaces
+
+Following classes are included in the package:
+
+# Class Footer
+
+# Class Header
+
+# Class Layout
+
+# Class Meta
+
+# Class Navigation
+
+# Class Page
+
+# Class Preloader
+
+# Class Sections
+
+# Class Theme
+
+# Class Vendor
 
