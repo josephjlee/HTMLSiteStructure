@@ -106,7 +106,7 @@ class Meta implements iMeta, iContent {
  */
 	public function description(){
 	
-		$description='Webdevelopment, art advising and a journey into Music"';
+		$description='';
 	
         return '<!-- SEO -->
         	    <meta name="description" content="'.$description.'">';
@@ -120,7 +120,7 @@ class Meta implements iMeta, iContent {
  */	
 	public function keywords(){
 		
-		$keywords='Berlin,Art,Music,Webdevelopment';
+		$keywords='';
 		
         return '<meta name="keywords" lang="en" content="'.$keywords.'">';
 		
@@ -134,7 +134,7 @@ class Meta implements iMeta, iContent {
 	public function apple(){
 	
 		$appleMobileWebAppCapable='yes';
-		$appleMobileWebAppTitle='d.Mount';
+		$appleMobileWebAppTitle='';
 		
 		return '<!-- Apple Mobile App Title, Pinned Tab (Safari), Mobile App Icon -->
         		<meta name="mobile-web-app-capable" content="'.$appleMobileWebAppCapable.'"> 
@@ -176,14 +176,14 @@ class Meta implements iMeta, iContent {
 	public function setContent(){
 		
 		return $this->charset().
-			   $this->ieCompability().
-			   $this->title().
-			   $this->manifest().
-			   $this->description().
-			   $this->keywords().
-			   $this->apple().
-			   $this->viewport().
-			   $this->canonical();
+		       $this->ieCompability().
+		       $this->title().
+		       $this->manifest().
+		       $this->description().
+		       $this->keywords().
+		       $this->apple().
+		       $this->viewport().
+		       $this->canonical();
 		
 	}//Eof Method "setContent"
 	
