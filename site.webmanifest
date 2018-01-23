@@ -1,0 +1,13 @@
+{
+	"name": "d.Mount",
+	"short_name": "DMOUNT",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#fff",
+	"description": "A Berlin based Web, Art & Music Project",
+    "icons": [{
+        "src": "assets/images/ico/apple-touch-icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }]
+}
