@@ -3,21 +3,25 @@
  * TRAIT :: SPLASHRESSOURCEMANAGEMENT
  * ==================================
  *
+ * Methods to build a Splash Screen for landing page
+ * Used with animated css classes. All options are described down below. 
+ * Needs only a brand and a subtitle.
+ * Has up to three steps of tweening.
  *
  * possible Options for animated classes:
  *
  * - bounce, flash, pulse, rubberBand, shake, headShake, swing, tada
  *   wobble, jello, bounceIn, bounceInDown, bounceInLeft, bounceInRight, 
- *	bounceInUp, bounceOut, bounceOutDown, bounceOutLeft, bounceOutRight,
- *	bounceOutUp, fadeIn, fadeInDown, fadeInDownBig, fadeInLeft, fadeInLeftBig, 
- *	fadeInRight, fadeInRightBig, fadeInUp, fadeInUpBig, fadeOut, fadeOutDown, 
- *	fadeOutDownBig, fadeOutLeft, fadeOutLeftBig, fadeOutRight, fadeOutRightBig,
- *	fadeOutUp, fadeOutUpBig, flipInX, flipInY, flipOutX, flipOutY, lightSpeedIn, 
- *	lightSpeedOut, rotateIn, rotateInDownLeft, rotateInDownRight, rotateInUpLeft, 
- *	rotateInUpRight, rotateOut, rotateOutDownLeft, rotateOutDownRight, rotateOutUpLeft, 
- *	rotateOutUpRight, hinge, jackInTheBox, rollIn, rollOut, zoomIn, zoomInDown, zoomInLeft, 
- *	zoomInRight, zoomInUp, zoomOut, zoomOutDown, zoomOutLeft, zoomOutRight, zoomOutUp, slideInDown,
- *	slideInLeft, slideInRight, slideInUp, slideOutDown, slideOutLeft, slideOutRight, slideOutUp
+ *	 bounceInUp, bounceOut, bounceOutDown, bounceOutLeft, bounceOutRight,
+ *	 bounceOutUp, fadeIn, fadeInDown, fadeInDownBig, fadeInLeft, fadeInLeftBig, 
+ *	 fadeInRight, fadeInRightBig, fadeInUp, fadeInUpBig, fadeOut, fadeOutDown, 
+ *	 fadeOutDownBig, fadeOutLeft, fadeOutLeftBig, fadeOutRight, fadeOutRightBig,
+ *	 fadeOutUp, fadeOutUpBig, flipInX, flipInY, flipOutX, flipOutY, lightSpeedIn, 
+ *	 lightSpeedOut, rotateIn, rotateInDownLeft, rotateInDownRight, rotateInUpLeft, 
+ *	 rotateInUpRight, rotateOut, rotateOutDownLeft, rotateOutDownRight, rotateOutUpLeft, 
+ *	 rotateOutUpRight, hinge, jackInTheBox, rollIn, rollOut, zoomIn, zoomInDown, zoomInLeft, 
+ *	 zoomInRight, zoomInUp, zoomOut, zoomOutDown, zoomOutLeft, zoomOutRight, zoomOutUp, slideInDown,
+ *	 slideInLeft, slideInRight, slideInUp, slideOutDown, slideOutLeft, slideOutRight, slideOutUp
  *
 */
 namespace Dmount\HTMLSiteStructure\RessourceManagement;
@@ -144,7 +148,7 @@ trait SplashRessourceManagement {
 				break;
 		}//Eof Switch
 		
-	}//Eof Method "set"
+	}//Eof Method "splash"
 	
 }//Eof trait "SplashRessourceManagement"
 
