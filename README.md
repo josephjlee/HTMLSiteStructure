@@ -40,25 +40,47 @@ The file /cms.php is placed in the dir /core/. This file includes some configura
 
 # Namespaces
 
+# Classes
+
 Following classes are included in the package:
 
-# Class Footer
-
-# Class Header
-
-# Class Layout
-
-# Class Meta
-
-# Class Navigation
-
-# Class Page
-
-# Class Preloader
-
-# Class Sections
-
-# Class Theme
-
-# Class Vendor
-
+# Footer
+  
+  Version: 0.0.1
+  
+# Header
+  
+  Version: 0.0.1
+  
+# Layout
+  
+  Version: 0.0.1
+  
+# Meta
+  
+  Version: 0.0.1
+  
+# Navigation
+  
+  Version: 0.0.1
+  
+# Page
+  
+  Version: 0.0.1
+  
+# Preloader
+  
+  Version: 0.0.1
+  
+# Sections
+  
+  Version: 0.0.1
+  
+# Theme
+  
+  Version: 0.0.1
+  
+# Vendor
+  
+  Version: 0.0.1
+  
