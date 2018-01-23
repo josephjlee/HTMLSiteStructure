@@ -26,8 +26,8 @@ class Header implements iHeader, iContent {
 	//
 	const USE_SPLASH = true;
 	const NAME_SPLASH = 'splash';
-	const SUBTITLE_SPLASH = '<put your subtitle here>';
-	const SUBTITLE_SPLASH_MOBILE = '<put your subtitle here>';
+	const SUBTITLE_SPLASH = 'A BERLIN BASED WEBDEVELOPMENT, ART & MUSIC PROJECT';//<put your subtitle here>
+	const SUBTITLE_SPLASH_MOBILE = 'WEB, ART & MUSIC PROJECT';//<put your subtitle here>
 	
 	//
 	public $pageID;

@@ -38,16 +38,16 @@ class Page implements iPage, iContent {
  * @param 
  */	
 	public function __construct(
-				    Meta $meta,
-				    Vendor $vendor,
-				    Theme $theme,
-				    Preloader $preloader,
-				    Header $header,
-				    Navigation $navigation,
-				    Sections $sections,
-				    Layout $layout,
-				    Footer $footer
-				    )
+								Meta $meta,
+								Vendor $vendor,
+								Theme $theme,
+								Preloader $preloader,
+								Header $header,
+								Navigation $navigation,
+								Sections $sections,
+								Layout $layout,
+								Footer $footer
+								)
 	{
 		
 		$this->meta = $meta;
@@ -65,7 +65,7 @@ class Page implements iPage, iContent {
 	}//Eof Construct
 
 /**
- * Placeholder method
+ * 
  *
  * @param 
  */	
@@ -154,7 +154,7 @@ class Page implements iPage, iContent {
  */	
 	public function setContent(){
 		
-		echo $this->doctype().PHP_EOL.$this->html();
+		echo $this->doctype().$this->html();
 		
 	}//Eof Method "setContent"
 	

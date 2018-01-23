@@ -24,7 +24,7 @@ require_once CORE.'Page'.DTRA.'JavascriptRessourceManagement'.FTRA;
 require_once CORE.'Page'.DTRA.'BrandRessourceManagement'.FTRA;
 require_once CORE.'Page'.DTRA.'SplashRessourceManagement'.FTRA;
 
-class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
+class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
 	
 	//Configuration
 	const USE_COMMENTS = false;
@@ -56,10 +56,10 @@ class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
  * @param 
  */
 	public function __construct(
-				    Mobile_Detect $detect=NULL,
-				    Layout $layout=NULL,
-				    Vendor $vendor=NULL
-				   )
+								Mobile_Detect $detect=NULL,
+								Layout $layout=NULL,
+								Vendor $vendor=NULL
+								)
 	{
 		
 		$this->detect = $detect;
@@ -71,9 +71,7 @@ class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
 	}//Eof Construct
 
 /**
- * Callback method for splash screen.
- * Get page id's from html body, when splash is used
- * otherwise set page id without the usage of splash
+ * 
  *
  * @param 
  */
@@ -88,9 +86,7 @@ class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
 	}//Eof Method "getPageID"
 
 /**
- * Set page id's for header, brand and subtitle.
- * If splash is used, this method sets a pound for
- * the last tween in splash screen.
+ * 
  *
  * @param 
  */
@@ -105,10 +101,7 @@ class Footer implements iFooter, iContent, jQuery, iSplash, iBrand {
 	}//Eof Method "setPageID"
 
 /**
- * Set the content.
- * Returns the jQuery document.ready functionality, if used
- * and let load the sources for javascript api, extensions and tools in group
- * sorted and described in vendor class
+ * 
  *
  * @param 
  */	

@@ -21,9 +21,6 @@ require_once CORE.'Page'.DINT.'Meta'.FINT;
 class Meta implements iMeta, iContent {
 	
 	//
-	const SUBDOMAIN = 'static.your-domain.com';
-	
-	//
 	public $detect;
 	
 /**
@@ -45,15 +42,11 @@ class Meta implements iMeta, iContent {
 	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
 
 /**
- * 
+ * Returns the static dir
  *
  * @param 
  */
-	private function subDomain(){
-		
-		return self::SUBDOMAIN;
-		
-	}//Eof Method "setSubDomain"
+	protected function subDomain(){return STATIC_SUBDOMAIN;}//Eof Method "setSubDomain"
 
 /**
  * 
@@ -113,8 +106,10 @@ class Meta implements iMeta, iContent {
  */
 	public function description(){
 	
+		$description='Webdevelopment, art advising and a journey into Music"';
+	
         return '<!-- SEO -->
-        	    <meta name="description" content="Webdevelopment, art advising and a journey into Music">';
+        	    <meta name="description" content="'.$description.'">';
 
 	}//Eof Method "description"
 
@@ -125,7 +120,9 @@ class Meta implements iMeta, iContent {
  */	
 	public function keywords(){
 		
-        return '<meta name="keywords" lang="en" content="Berlin,Art,Music,Webdevelopment">';
+		$keywords='Berlin,Art,Music,Webdevelopment';
+		
+        return '<meta name="keywords" lang="en" content="'.$keywords.'">';
 		
 	}//Eof Method "keywords"
 
@@ -136,11 +133,14 @@ class Meta implements iMeta, iContent {
  */
 	public function apple(){
 	
+		$appleMobileWebAppCapable='yes';
+		$appleMobileWebAppTitle='d.Mount';
+		
 		return '<!-- Apple Mobile App Title, Pinned Tab (Safari), Mobile App Icon -->
-        		<meta name="mobile-web-app-capable" content="yes"> 
-        		<meta name="apple-mobile-web-app-title" content="d.Mount">
-        		<link rel="mask-icon" sizes="any" href="'.$this->subDomain().'/assets/images/ico/favicon.svg" color="#fff">
-        		<link rel="apple-touch-icon" sizes="192x192" href="'.$this->subDomain().'/assets/images/ico/apple-touch-icon-192x192.png">';
+        		<meta name="mobile-web-app-capable" content="'.$appleMobileWebAppCapable.'"> 
+        		<meta name="apple-mobile-web-app-title" content="'.$appleMobileWebAppTitle.'">
+        		<link rel="mask-icon" sizes="any" href="'.$this->subDomain().STATIC_IMG.'ico/favicon.svg" color="#fff">
+        		<link rel="apple-touch-icon" sizes="192x192" href="'.$this->subDomain().STATIC_IMG.'ico/apple-touch-icon-192x192.png">';
 		
 	}//Eof Method "apple"
 
@@ -164,7 +164,7 @@ class Meta implements iMeta, iContent {
 	public function canonical(){
 		
 		return '<!--- Canonical -->
-        		<link rel="canonical" href="http://'.$_SERVER['HTTP_HOST'].'/index.php"> ';
+        		<link rel="canonical" href="https://'.$_SERVER['HTTP_HOST'].'/index.php"> ';
 		
 	}//Eof Method "canonical"
 

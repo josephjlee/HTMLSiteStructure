@@ -48,49 +48,45 @@ class Vendor implements iVendor {
 	// CDN Cloud
 	const USE_CDN = false;
 	
-	//Configurations (Boolean)
+	//API Configuration (Boolean)
 	const USE_FONTAWESOME = true;
 	const USE_BOOTSTRAP = true;
 	const USE_JQUERY = true;
 	const USE_ANIMATE = true;
 	const USE_HOWLER = true;
 	
-	//
-	const SUBDOMAIN = 'static.your-domain.com';
+	//Extend API Configuration (Boolean)
+	const USE_FULLPAGE = true;
+	const USE_ANIMATEJS = true;
+	const USE_SPATIAL = true;
+	
+	//Tools Configuration (Boolean)
+	const USE_MODERNIZER = true;
+	const USE_IOS_ORIENTATIONCHANGE = true;
+	const USE_IMAGESLOADED = true;
 	
 	//
-	const FILE_DIR_CSS = '/assets/css/vendor/';
-	const FILE_DIR_JS = '/assets/js/vendor/';
+	const FILE_DIR = '/vendor/';
 	
+	//
 	const MIN_JS = '.min.js';
 	const MIN_CSS = '.min.css';
 	
-	//
-	public $detect;
-	
-	use VendorRessourceManagement;
+	use RessourceManagement\VendorRessourceManagement;
 
 /**
  * Construct an instance of this class
  *
  * @param 
  */
-	public function __construct(Mobile_Detect $detect=NULL){
-		
-		$this->detect=$detect;
-		
-	}//Eof Construct
+	public function __construct(){}//Eof Construct
 
 /**
  * 
  *
  * @param 
  */
-	private function subDomain(){
-		
-		return self::SUBDOMAIN;
-		
-	}//Eof Method "setSubDomain"
+	protected function subDomain(){return STATIC_SUBDOMAIN;}//Eof Method "setSubDomain"
 
 /**
  * 
@@ -102,9 +98,9 @@ class Vendor implements iVendor {
 		switch($typeOf)
 		{
 			case 'head':
-				return ((self::USE_FONTAWESOME)?$this->setCSS_FontAwesome():'').
-					   ((self::USE_BOOTSTRAP)?$this->setCSS_BootsTrap():'').
-					   ((self::USE_ANIMATE)?$this->setCSS_Animate():'');
+				return $this->setCSS_FontAwesome().
+					   $this->setCSS_BootsTrap().
+					   $this->setCSS_Animate();
 			break;
 			case 'head-extend':
 				return $this->setExtCSS_FullPage();

@@ -21,9 +21,6 @@ require_once CORE.'Page'.DINT.'Theme'.FINT;
 class Theme implements iTheme {
 
 	//
-	const SUBDOMAIN = 'static.your-domain.com';
-
-	//
 	const FILE_CORE = 'core';
 	const FILE_DIR_CSS = '/assets/css/themes/';
 	const FILE_DIR_JS = '/assets/js/themes/';
@@ -47,11 +44,7 @@ class Theme implements iTheme {
  *
  * @param 
  */
-	private function subDomain(){
-		
-		return self::SUBDOMAIN;
-		
-	}//Eof Method "subDomain"
+	protected function subDomain(){return STATIC_SUBDOMAIN;}//Eof Method "subDomain"
 
 /**
  * 
