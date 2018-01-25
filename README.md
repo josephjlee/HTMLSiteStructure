@@ -40,7 +40,8 @@ The file /cms.php is placed in the dir /core/. This file includes some configura
 
 # Namespaces
 
-My classes for HTMLSiteStructure are running under the namespace Dmount\HTMLSiteStructure.
+My classes for HTMLSiteStructure are running under the namespace <b>Dmount\HTMLSiteStructure</b>.
+
 Other classes, outside of HTMLSiteStructure are named with <b>Dmount\Core</b>.
 
 
@@ -87,6 +88,18 @@ Following classes are included in the package:
 # Vendor
   
   Version: 0.0.1
+
+# Traits
+
+# BrandRessourceManagement
+
+# JavascriptRessourceManagement
+
+# SplashRessourceManagement
+
+# VendorRessourceManagement
+
+#
 
 # Other  
 If something is unclear, please do not hesitate to contact me for further inquiries. From time to time I will actualize the documentation and the project as whole.
