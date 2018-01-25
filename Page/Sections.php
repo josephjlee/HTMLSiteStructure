@@ -53,9 +53,9 @@ class Sections implements iSections, iContent {
  */
 	public function setContent(){
 		
-		return '<!-- bof sections --!>
+		return "\t\t".'<!-- bof sections -->'.PHP_EOL.
 				
-				<!-- eof sections -->';
+			   "\t\t".'<!-- eof sections -->'.PHP_EOL;
 		
 	}//Eof Method "setContent"
 	

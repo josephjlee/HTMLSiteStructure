@@ -20,6 +20,9 @@ require_once CORE.'Page'.DINT.'Meta'.FINT;
 
 class Meta implements iMeta, iContent {
 	
+	//Configurations (Boolean)
+	const USE_COMMENTS = true;
+	
 	//
 	public $detect;
 	
@@ -42,20 +45,30 @@ class Meta implements iMeta, iContent {
 	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
 
 /**
- * Returns the static dir
+ * Return static subdomain for assets
  *
  * @param 
  */
 	protected function subDomain(){return STATIC_SUBDOMAIN;}//Eof Method "setSubDomain"
 
 /**
- * 
+ * Description token from https://www.w3schools.com/tags/att_meta_charset.asp
+ *
+ * Specifies the character encoding for the HTML document.
+ * Common values: 
+ *	- UTF-8 - Character encoding for Unicode
+ *	- ISO-8859-1 - Character encoding for the Latin alphabet
+ * In theory, any character encoding can be used, but no browser understands all of them. 
+ * The more widely a character encoding is used, the better the chance that a browser will understand it.
+ * To view all available character encodings, look at IANA character sets:
+ * >> http://www.iana.org/assignments/character-sets/character-sets.xhtml
  *
  * @param 
  */
  	public function charset(){
 		
-		return '<meta charset="UTF-8">';
+		$characterSet='UTF-8';
+		return "\t\t".'<meta charset="'.$characterSet.'">'.PHP_EOL;
 		
 	}//Eof Method "charset"
 	
@@ -72,7 +85,8 @@ class Meta implements iMeta, iContent {
  */
  	public function ieCompability(){
 		
-        return'<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
+		$compMode='IE=edge';
+        return "\t\t".'<meta http-equiv="X-UA-Compatible" content="'.$compMode.'" />'.PHP_EOL;
 		
 	}//Eof Method "charset"
 	
@@ -83,7 +97,8 @@ class Meta implements iMeta, iContent {
  */
  	public function title(){
 		
-        return '<title>DMOUNT</title>';
+		$title='DMOUNT';
+        return "\t\t".'<title>'.$title.'</title>'.PHP_EOL;
 		
 	}//Eof Method "title"
 		
@@ -94,8 +109,8 @@ class Meta implements iMeta, iContent {
  */
  	public function manifest(){
 		
-       return '<!-- Manifest -->
-        	   <link rel="manifest" href="site.webmanifest">';
+       return ((self::USE_COMMENTS)?"\t\t".'<!-- Manifest -->'.PHP_EOL:'').
+        	  						"\t\t".'<link rel="manifest" href="site.webmanifest">'.PHP_EOL;
 			   
 	}//Eof Method "manifest"
 	
@@ -106,10 +121,9 @@ class Meta implements iMeta, iContent {
  */
 	public function description(){
 	
-		$description='';
-	
-        return '<!-- SEO -->
-        	    <meta name="description" content="'.$description.'">';
+		$description='Webdevelopment, art advising and a journey into Music"';
+        return "\t\t".'<!-- SEO -->'.PHP_EOL.
+        	   "\t\t".'<meta name="description" content="'.$description.'">'.PHP_EOL;
 
 	}//Eof Method "description"
 
@@ -120,9 +134,8 @@ class Meta implements iMeta, iContent {
  */	
 	public function keywords(){
 		
-		$keywords='';
-		
-        return '<meta name="keywords" lang="en" content="'.$keywords.'">';
+		$keywords='Berlin,Art,Music,Webdevelopment';
+        return "\t\t".'<meta name="keywords" lang="en" content="'.$keywords.'">'.PHP_EOL;
 		
 	}//Eof Method "keywords"
 
@@ -134,13 +147,13 @@ class Meta implements iMeta, iContent {
 	public function apple(){
 	
 		$appleMobileWebAppCapable='yes';
-		$appleMobileWebAppTitle='';
+		$appleMobileWebAppTitle='d.Mount';
 		
-		return '<!-- Apple Mobile App Title, Pinned Tab (Safari), Mobile App Icon -->
-        		<meta name="mobile-web-app-capable" content="'.$appleMobileWebAppCapable.'"> 
-        		<meta name="apple-mobile-web-app-title" content="'.$appleMobileWebAppTitle.'">
-        		<link rel="mask-icon" sizes="any" href="'.$this->subDomain().STATIC_IMG.'ico/favicon.svg" color="#fff">
-        		<link rel="apple-touch-icon" sizes="192x192" href="'.$this->subDomain().STATIC_IMG.'ico/apple-touch-icon-192x192.png">';
+		return ((self::USE_COMMENTS)?"\t\t".'<!-- Apple Mobile App Title, Pinned Tab (Safari), Mobile App Icon -->'.PHP_EOL:'').
+        	   						 "\t\t".'<meta name="mobile-web-app-capable" content="'.$appleMobileWebAppCapable.'">'.PHP_EOL. 
+        	   						 "\t\t".'<meta name="apple-mobile-web-app-title" content="'.$appleMobileWebAppTitle.'">'.PHP_EOL.
+        	   						 "\t\t".'<link rel="mask-icon" sizes="any" href="'.$this->subDomain().STATIC_IMG.'ico/favicon.svg" color="#fff">'.PHP_EOL.
+        	   						 "\t\t".'<link rel="apple-touch-icon" sizes="192x192" href="'.$this->subDomain().STATIC_IMG.'ico/apple-touch-icon-192x192.png">'.PHP_EOL;
 		
 	}//Eof Method "apple"
 
@@ -151,8 +164,13 @@ class Meta implements iMeta, iContent {
  */
 	public function viewport(){
 		
-        return '<!-- Viewport -->
-        		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
+		$width='device-width,';
+		$initScale='1.0';
+		$maxScale='1.0';
+		$userScalable='no';
+		$content='width='.$width.', initial-scale='.$initScale.', maximum-scale='.$maxScale.', user-scalable='.$userScalable.'';
+        return ((self::USE_COMMENTS)?"\t\t".'<!-- Viewport -->'.PHP_EOL:'').
+        	   						 "\t\t".'<meta name="viewport" content="'.$content.'">'.PHP_EOL;
 		
 	}//Eof Method "viewport"
 
@@ -163,8 +181,8 @@ class Meta implements iMeta, iContent {
  */
 	public function canonical(){
 		
-		return '<!--- Canonical -->
-        		<link rel="canonical" href="https://'.$_SERVER['HTTP_HOST'].'/index.php"> ';
+		return ((self::USE_COMMENTS)?"\t\t".'<!--- Canonical -->'.PHP_EOL:'').
+        	   						 "\t\t".'<link rel="canonical" href="https://'.$_SERVER['HTTP_HOST'].'/index.php">'.PHP_EOL;
 		
 	}//Eof Method "canonical"
 
@@ -176,14 +194,14 @@ class Meta implements iMeta, iContent {
 	public function setContent(){
 		
 		return $this->charset().
-		       $this->ieCompability().
-		       $this->title().
-		       $this->manifest().
-		       $this->description().
-		       $this->keywords().
-		       $this->apple().
-		       $this->viewport().
-		       $this->canonical();
+			   $this->ieCompability().
+			   $this->title().
+			   $this->manifest().
+			   $this->description().
+			   $this->keywords().
+			   $this->apple().
+			   $this->viewport().
+			   $this->canonical();
 		
 	}//Eof Method "setContent"
 	

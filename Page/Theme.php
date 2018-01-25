@@ -40,7 +40,7 @@ class Theme implements iTheme {
 	}//Eof Construct
 
 /**
- * 
+ * Return static subdomain for assets
  *
  * @param 
  */
@@ -53,9 +53,9 @@ class Theme implements iTheme {
  */
     public function setCSS(){
 	 
-        return '<link href="'.$this->subDomain().
-							 self::FILE_DIR_CSS.
-							 self::FILE_CORE.'-0.0.1.css" rel="stylesheet">';
+        return "\t\t".'<link href="'.$this->subDomain().
+							 		 self::FILE_DIR_CSS.
+							 		 self::FILE_CORE.'-0.0.1.css" rel="stylesheet">'.PHP_EOL;
 		
     }//Eof Method "setCSS"
 
@@ -66,9 +66,9 @@ class Theme implements iTheme {
  */
 	public function setJS(){
 		
-		return '<script src="'.$this->subDomain().
-							  self::FILE_DIR_JS.
-							  self::FILE_CORE.'-0.0.1.js"></script>';
+		return "\t\t".'<script src="'.$this->subDomain().
+							  		  self::FILE_DIR_JS.
+							  		  self::FILE_CORE.'-0.0.1.js"></script>'.PHP_EOL;
 		
 	}//Eof Method "setJS"
 

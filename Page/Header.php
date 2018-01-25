@@ -21,6 +21,9 @@ require_once CORE.'Page'.DINT.'Header'.FINT;
 class Header implements iHeader, iContent {
 	
 	//
+	const USE_COMMENTS = true;
+	
+	//
 	const BRAND_TITLE_MOBILE = 'DMOUNT';
 	
 	//
@@ -87,14 +90,14 @@ class Header implements iHeader, iContent {
  */	
 	public function setMobileContent(){
 		
-		return '<!-- bof header -->
-				<header class="container splash brand text-center">
-					<h1 class="mt0">'.self::BRAND_TITLE_MOBILE.'</h1>
-					<hr class="text-black">
-					<p class="text-black">'.self::SUBTITLE_SPLASH_MOBILE.'</p>
-					<hr class="text-black">
-				</header>
-    			<!-- /eof header -->';
+		return (self::USE_COMMENTS)?"\t\t".'<!-- bof header -->.'.PHP_EOL:''.
+			   						"\t\t".'<header class="container splash brand text-center">'.PHP_EOL.
+			   						"\t\t\t".'<h1 class="mt0">'.self::BRAND_TITLE_MOBILE.'</h1>'.PHP_EOL.
+			   						"\t\t\t".'<hr class="text-black">'.PHP_EOL.
+			   						"\t\t\t".'<p class="text-black">'.self::SUBTITLE_SPLASH_MOBILE.'</p>'.PHP_EOL.
+			   						"\t\t\t".'<hr class="text-black">'.PHP_EOL.
+			   						"\t\t".'</header>'.PHP_EOL.
+    		    (self::USECOMMENTS)?"\t\t".'<!-- /eof header -->'.PHP_EOL:'';
 		
 	}//Eof Method "setMobileContent"
 
@@ -115,14 +118,14 @@ class Header implements iHeader, iContent {
 		{
 			if(self::USE_SPLASH)
 			{
-				return '<div id="'.$this->pageID.'" class="splash container'.$this->layout->cDepth2.'">
-							<!-- bof header -->
-							<header id="'.$this->pageHeaderID.'" class="container">
-								<h1 id="'.$this->pageBrandID.'"></h1>
-								<p id="'.$this->pageSubtitleID.'">'.self::SUBTITLE_SPLASH.'</p>
-							</header>    
-							<!-- /eof header -->
-						</div>';
+				return "\t\t".'<div id="'.$this->pageID.'" class="splash container'.$this->layout->cDepth2.'">'.PHP_EOL.
+					   "\t\t\t".'<!-- bof header -->'.PHP_EOL.
+					   "\t\t\t".'<header id="'.$this->pageHeaderID.'" class="container">'.PHP_EOL.
+					   "\t\t\t\t".'<h1 id="'.$this->pageBrandID.'"></h1>'.PHP_EOL.
+					   "\t\t\t\t".'<p id="'.$this->pageSubtitleID.'">'.self::SUBTITLE_SPLASH.'</p>'.PHP_EOL.
+					   "\t\t\t".'</header>'.PHP_EOL.    
+					   "\t\t\t".'<!-- /eof header -->'.PHP_EOL.
+					   "\t\t".'</div>'.PHP_EOL;
 			}
 			else return;
 		} 

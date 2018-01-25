@@ -27,7 +27,6 @@ require_once CORE.'Page/Navigation.php'; $navigation = new Navigation($detect,$l
 require_once CORE.'Page/Sections.php'; $sections = new Sections($detect,$layout);
 require_once CORE.'Page/Footer.php'; $footer = new Footer($detect,$layout,$vendor);
 
-
 class Page implements iPage, iContent {
 	
 	public $meta,$vendor,$theme,$preloader,$header,$navigation,$sections,$layout,$footer;
@@ -65,7 +64,7 @@ class Page implements iPage, iContent {
 	}//Eof Construct
 
 /**
- * 
+ * Placeholder method
  *
  * @param 
  */	
@@ -78,7 +77,7 @@ class Page implements iPage, iContent {
  */		
 	public function doctype(){
 		
-		return '<!doctype html>';
+		return '<!doctype html>'.PHP_EOL;
 
 	}//Eof Method "doctype"
 	
@@ -89,9 +88,12 @@ class Page implements iPage, iContent {
  */	
 	public function browserUpgrade(){
 		
-		return '<!--[if lte IE 9]>
-				<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-				<![endif]-->';
+		return "\t\t".'<!--[if lte IE 9]>'.PHP_EOL.
+			   "\t\t".'<p class="browserupgrade">'.PHP_EOL.
+			   "\t\t\t".'You are using an <strong>outdated</strong> browser. '.PHP_EOL.
+			   "\t\t\t".'Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.'.PHP_EOL.
+			   "\t\t".'</p>'.PHP_EOL.
+			   "\t\t".'<![endif]-->'.PHP_EOL;
 		
 	}//Eof Method "browserUpgrade"
 
@@ -103,12 +105,12 @@ class Page implements iPage, iContent {
  */	
 	public function head(){
 	
-		return '<head>'.
+		return "\t".'<head>'.PHP_EOL.
 				$this->meta->setContent().
 				$this->vendor->setSource('head').
 				$this->theme->setSource().
 				$this->vendor->setJS_Modernizer().
-				'<head>';
+				"\t".'<head>'.PHP_EOL;
 				
 	}//Eof Method "head"
 
@@ -119,15 +121,17 @@ class Page implements iPage, iContent {
  */		
 	public function body(){
 	
-		return '<body class="color--scheme font--scheme">
-				'.$this->browserUpgrade().
-				  $this->preloader->setContent().
-				  $this->header->setContent().
-				  $this->navigation->setContent().
-				  $this->sections->setContent().
-				  $this->layout->setContent().
-				  $this->footer->setContent().'
-				</body>';
+		$classes="color--scheme font--scheme";
+	
+		return "\t".'<body class="'.$classes.'">'.PHP_EOL.
+				$this->browserUpgrade().
+				$this->preloader->setContent().
+				$this->header->setContent().
+				$this->navigation->setContent().
+				$this->sections->setContent().
+				$this->layout->setContent().
+				$this->footer->setContent().
+				"\t".'</body>'.PHP_EOL;
 		
 	}//Eof Method "body"
 
@@ -138,12 +142,12 @@ class Page implements iPage, iContent {
  */		
 	public function html(){
 		
-		return '<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""><![endif]-->
-				<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang=""><![endif]-->
-				<!--[if IE 8]><html class="no-js lt-ie9" lang=""><![endif]-->
-				<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
-				'.$this->head().$this->body().'
-				</html>';
+		return '<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""><![endif]-->'.PHP_EOL.
+			   '<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang=""><![endif]-->'.PHP_EOL.
+			   '<!--[if IE 8]><html class="no-js lt-ie9" lang=""><![endif]-->'.PHP_EOL.
+			   '<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->'.PHP_EOL.
+				$this->head().$this->body().
+			   '</html>';
 		
 	}//Eof Method "html"
 

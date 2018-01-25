@@ -21,6 +21,9 @@ require_once CORE.'Page'.DINT.'Preloader'.FINT;
 class Preloader implements iPreloader, iContent {
 	
 	//
+	const USE_COMMENTS = true;
+	
+	//
 	public $detect, $layout;
 	
 /**
@@ -40,7 +43,7 @@ class Preloader implements iPreloader, iContent {
 	}//Eof Construct
 
 /**
- * 
+ * Placeholder method
  *
  * @param 
  */	
@@ -53,12 +56,12 @@ class Preloader implements iPreloader, iContent {
  */
 	public function setContent(){
 		
-		return '<!-- bof preloader --!>
+		return "\t\t".'<!-- bof preloader -->'.PHP_EOL.
 				
-				<!-- eof preloader -->';
+			   "\t\t".'<!-- eof preloader -->'.PHP_EOL;
 		
 	}//Eof Method "setContent"
 	
-}//Eof Class "dm_PagePreloader"
+}//Eof Class "Preloader"
 
 ?>

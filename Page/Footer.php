@@ -17,9 +17,9 @@ use Dmount\Core\{
  
 //Loading interface & traits
 require_once CORE.'Page'.DINT.'Footer'.FINT;
-require_once CORE.'Page'.DINT.'jQuery'.FINT;
 require_once CORE.'Page'.DINT.'Splash'.FINT;
 require_once CORE.'Page'.DINT.'Brand'.FINT;
+require_once CORE.'Page'.DINT.'jQuery'.FINT;
 require_once CORE.'Page'.DTRA.'JavascriptRessourceManagement'.FTRA;
 require_once CORE.'Page'.DTRA.'BrandRessourceManagement'.FTRA;
 require_once CORE.'Page'.DTRA.'SplashRessourceManagement'.FTRA;
@@ -56,10 +56,10 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
  * @param 
  */
 	public function __construct(
-				    Mobile_Detect $detect=NULL,
-				    Layout $layout=NULL,
-				    Vendor $vendor=NULL
-				    )
+								Mobile_Detect $detect=NULL,
+								Layout $layout=NULL,
+								Vendor $vendor=NULL
+								)
 	{
 		
 		$this->detect = $detect;
@@ -96,11 +96,13 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
  */
 	public function setPageID(){
 		
+		$prefixID='page';
+		$seperatorID='-';
 		$pound=(!self::USE_SPLASH)?'#':'';
-		$this->pageID = $pound.'page-header-container';
-		$this->pageHeaderID = $pound.'page-header';
-		$this->pageSubtitleID = $pound.'page-subtitle';
-		$this->pageBrandID = $pound.'page-brand';
+		$this->pageID = $pound.$prefixID.$seperatorID.'header-container';
+		$this->pageHeaderID = $pound.$prefixID.$seperatorID.'header';
+		$this->pageSubtitleID = $pound.$prefixID.$seperatorID.'subtitle';
+		$this->pageBrandID = $pound.$prefixID.$seperatorID.'brand';
 		
 	}//Eof Method "setPageID"
 
