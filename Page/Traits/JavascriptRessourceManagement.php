@@ -40,12 +40,12 @@ trait JavaScriptRessourceManagement {
  * @param 
  */
 	public function setjFunc(
-							  string $mainAnimID = NULL,
-							  string $mainAnimFunc = NULL,
-							  string $animType = NULL,
-							  string $content = NULL,
-							  int $step = NULL
-							  ) 
+				 string $mainAnimID = NULL,
+				 string $mainAnimFunc = NULL,
+				 string $animType = NULL,
+				 string $content = NULL,
+				 int $step = NULL
+				 ) 
 	{
 
 		$arr=$this->setComments($step);
@@ -101,11 +101,11 @@ trait JavaScriptRessourceManagement {
 	public function jQuery_DocReady(string $content=NULL){
 	
 		return "\t\t".'<script>'.PHP_EOL.
-			   "\t\t\t".'$(document).ready(function(){'.PHP_EOL.
-			   $content.PHP_EOL.
-			   "\t\t\t".'});'.PHP_EOL.
-			   ((self::USE_COMMENTS)?"\t\t\t".'/* /eof document.ready */'.PHP_EOL:'').
-			   "\t\t".'</script>'.PHP_EOL;
+		       "\t\t\t".'$(document).ready(function(){'.PHP_EOL.
+		       $content.PHP_EOL.
+		       "\t\t\t".'});'.PHP_EOL.
+		       ((self::USE_COMMENTS)?"\t\t\t".'/* /eof document.ready */'.PHP_EOL:'').
+		       "\t\t".'</script>'.PHP_EOL;
 		
 	}//Eof Function "jQuery_DocReady"
 	
