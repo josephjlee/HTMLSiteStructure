@@ -9,6 +9,7 @@
  * Following methods are defined:
  *
  * @method jSetTimeout
+ * @method setjFunc
  * @method jQuery_SetParam
  * @method jQuery_addClassesTo
  * @method jQuery_DocReady
