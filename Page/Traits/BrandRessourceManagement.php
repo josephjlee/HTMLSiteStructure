@@ -16,12 +16,16 @@ trait BrandRessourceManagement {
  */	
 	public function setConfig(){
 		
-		$brandID=$this->jQuery_setParam('page-brand');
-		$brandCssClass='brand';
+		$prefixBrand='brand';
+		$prefixID='page';
+		$seperatorID='-';
+		$subtitleCssClass='subtitle ';
+		
+		
+		$brandID=$this->jQuery_setParam($prefixID.$seperatorID.$prefixBrand);
+		$brandCssClass=$prefixBrand;
 		$brandWidth=$this->jQuery_setParam('83');
 		$brandHeight=$this->jQuery_setParam('38');
-		
-		$subtitleCssClass='subtitle ';
 		
 		if(self::USE_SPLASH)
 		{	
@@ -32,7 +36,7 @@ trait BrandRessourceManagement {
 			$brandSecondAnimStep='zoomOutLeft';
 			$brandThirdAnimStep='bounceInDown';
 					
-			$brandSplashID=$this->jQuery_setParam('page-splash-brand');
+			$brandSplashID=$this->jQuery_setParam($prefixID.$seperatorID.self::NAME_SPLASH.$seperatorID.$prefixBrand);
 			$brandTimeoutSteps=5000;
 		}
 		else
@@ -69,15 +73,13 @@ trait BrandRessourceManagement {
 			
 			case 'jquery-docready':
 				
-				$v=$this->setConfig();
+				$=$this->setConfig();
 				
-				return 'var brand=new Brand('.$v['width'].','.$v['height'].','.$v['bid'].','.$v['bspid'].','.$v['use'].');
-						var timeoutSteps='.$v['bto'].';
-						'.$this->jQuery_addClassesTo(
-													 array($this->pageBrandID,$this->pageSubtitleID),
-													 array($v['cls'],$v['scls'].$v['sacls'])
-													 ).
-							(self::USE_SPLASH?$this->splash(array($v['ba1'],$v['ba2'],$v['ba3'])):'');
+				return  "\t\t\t\t".'var brand=new Brand('.$c['width'].','.$c['height'].','.$c['bid'].','.$c['bspid'].','.$c['use'].');'.PHP_EOL.
+					    "\t\t\t\t".'var timeoutSteps='.$c['bto'].';'.PHP_EOL.
+					    $this->jQuery_addClassesTo(array($this->pageBrandID,$this->pageSubtitleID),
+												   array($c['cls'],$c['scls'].$c['sacls'])).
+					   (self::USE_SPLASH?$this->splash(array($c['ba1'],$c['ba2'],$c['ba3'])):'');
 				break;
 				
 			default:

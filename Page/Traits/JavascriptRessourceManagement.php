@@ -5,13 +5,65 @@
  *
  * Trait for JavaScript is a Ressource Management for using API's
  * and their different functionalities.
+ *
+ * Following methods are defined:
+ *
+ * @method jSetTimeout
+ * @method jQuery_SetParam
+ * @method jQuery_addClassesTo
+ * @method jQuery_DocReady
 */
 namespace Dmount\HTMLSiteStructure\RessourceManagement;
 
 trait JavaScriptRessourceManagement {
 
 /**
- * Setting arguments with backslashes
+ * Set Javascript timeout function
+ * @param string content
+ * @param timeoutParam
+ */
+	public function jSetTimeout(string $content=NULL, $timeoutParam=NULL){
+		
+		$v='';
+		$v.='setTimeout(function(){'.PHP_EOL;
+		$v.=$content;
+		$v.='},'.$timeoutParam.');'.PHP_EOL;
+		$v.=((self::USE_COMMENTS)?'/* /eof setTimeout */'.PHP_EOL:'');
+		$v.='clearTimeout();'.PHP_EOL;
+		return $v;
+		
+	}//Eof Method "jSetTimeout"
+
+/**
+ * 
+ *
+ * @param 
+ */
+	public function setjFunc(
+							  string $mainAnimID = NULL,
+							  string $mainAnimFunc = NULL,
+							  string $animType = NULL,
+							  string $content = NULL,
+							  int $step = NULL
+							  ) 
+	{
+
+		$arr=$this->setComments($step);
+
+		//call jQuery extended object
+		$v=$arr[0];
+		$v.= '$(\''.$mainAnimID.'\').'.$mainAnimFunc.'(\''.$animType.'\',function(){'.PHP_EOL;
+		$v.= "\t".$content.PHP_EOL;
+		$v.= '});'.PHP_EOL;
+		$v.=$arr[1];
+		
+		unset($bofComment,$eofComment);
+		return $v;
+		
+	}//Eof Method "setjFunc"
+
+/**
+ * Set argument with backslashes
  * @param string param
  */
 	public function jQuery_setParam(string $param=''){
@@ -32,7 +84,7 @@ trait JavaScriptRessourceManagement {
 		if($numClasses>0 && is_array($id))
 		{
 			for($i=0;$i<$numClasses;$i++){
-				$v.='$('.$this->jQuery_setParam($id[$i]).').addClass('.$this->jQuery_setParam($classes[$i]).');';
+				$v.= '$('.$this->jQuery_setParam($id[$i]).').addClass('.$this->jQuery_setParam($classes[$i]).');'."\n";
 			}
 		}
 		return $v;
@@ -44,11 +96,16 @@ trait JavaScriptRessourceManagement {
  *	- create the brand object
  * 	- includes the splash screen animation, if used
  *
- * @param 
+ * @param string content
  */
 	public function jQuery_DocReady(string $content=NULL){
 	
-		return '<script>$(document).ready(function(){'.$content.'});/* /eof document.ready */</script>';
+		return "\t\t".'<script>'.PHP_EOL.
+			   "\t\t\t".'$(document).ready(function(){'.PHP_EOL.
+			   $content.PHP_EOL.
+			   "\t\t\t".'});'.PHP_EOL.
+			   ((self::USE_COMMENTS)?"\t\t\t".'/* /eof document.ready */'.PHP_EOL:'').
+			   "\t\t".'</script>'.PHP_EOL;
 		
 	}//Eof Function "jQuery_DocReady"
 	

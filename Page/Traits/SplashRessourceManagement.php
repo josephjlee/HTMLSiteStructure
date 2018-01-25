@@ -40,8 +40,8 @@ trait SplashRessourceManagement {
 			//set comments
 			if($step === NULL)
 				$step = 'default';
-			$bofComment='/* bof splash-step-'.$step.' */';
-			$eofComment='/* /eof splash-step-'.$step.' */';
+			$bofComment='/* bof '.self::NAME_SPLASH.'-step-'.$step.' */';
+			$eofComment='/* /eof '.self::NAME_SPLASH.'-step-'.$step.' */';
 			return array($bofComment,$eofComment);
 		}
 		
@@ -52,49 +52,29 @@ trait SplashRessourceManagement {
  *
  * @param 
  */
-	public function setjFunc(
-							  string $mainAnimID = NULL,
-							  string $mainAnimFunc = NULL,
-							  string $animType = NULL,
-							  string $content = NULL,
-							  int $step = NULL
-							  ) 
-	{
-
-		$arr=$this->setComments($step);
-
-		//call jQuery extended object
-		$v=$arr[0];
-		$v.='$(\''.$mainAnimID.'\').'.$mainAnimFunc.'(\''.$animType.'\',function(){';
-		$v.=$content;
-		$v.='});';
-		$v.=$arr[1];
-		
-		unset($bofComment,$eofComment);
-		return $v;
-		
-	}//Eof Method "setjFunc"
-
-/**
- * 
- *
- * @param 
- */
 	public function setSplashID(){
 		
-		$this->pageID = '#page-'.self::NAME_SPLASH;
-		$this->pageHeaderID = '#page-'.self::NAME_SPLASH.'-header';
-		$this->pageSubtitleID = '#page-'.self::NAME_SPLASH.'-subtitle';
-		$this->pageBrandID = '#page-'.self::NAME_SPLASH.'-brand';
+		$prefixID='page';
+		$seperatorID='-';
+		$pound='#';
+		$this->pageID = $pound.$prefixID.$seperatorID.self::NAME_SPLASH;
+		$this->pageHeaderID = $pound.$prefixID.$seperatorID.self::NAME_SPLASH.$seperatorID.'header';
+		$this->pageSubtitleID = $pound.$prefixID.$seperatorID.self::NAME_SPLASH.$seperatorID.'subtitle';
+		$this->pageBrandID = $pound.$prefixID.$seperatorID.self::NAME_SPLASH.$seperatorID.'brand';
 		
 	}//Eof Method "setSplashID"
 
 /**
- * 
+ * Call splash screen, select
  *
- * @param 
+ * @param array animTypes
+ * @param integer step
+ * @param integer steps
  */
 	public function splash(array $animTypes=NULL, int $steps=2, int $step=NULL){
+	
+		$prefixID='page';
+		$seperatorID='-';
 	
 		//define main animation
 		$mainAnimClass = 'animated';
@@ -110,25 +90,27 @@ trait SplashRessourceManagement {
 		switch($step)
 		{
 			case 1:
+				unset($content);
 				if($steps>1)
 					$nextStep=$this->splash(NULL,2,2);
 				$animType=$this->animTypes[1];
-				$content='$(\''.$this->pageBrandID.'\').removeClass(\''.$mainAnimClass.' '.$this->animTypes[0].' '.$brandAnimOutro.'\');
-						  $(\''.$this->pageBrandID.'\').empty();
-						  $(\''.$this->pageSubtitleID.'\').removeClass(\''.$mainAnimClass.' zoomInLeft '.$subtitleAnimOutro.'\');
-						  $(\''.$this->pageSubtitleID.'\').empty();
-						  '.$nextStep;  
+				$content='$(\''.$this->pageBrandID.'\').removeClass(\''.$mainAnimClass.' '.$this->animTypes[0].' '.$brandAnimOutro.'\');'.PHP_EOL.
+						 '$(\''.$this->pageBrandID.'\').empty();'.PHP_EOL.
+						 '$(\''.$this->pageSubtitleID.'\').removeClass(\''.$mainAnimClass.' zoomInLeft '.$subtitleAnimOutro.'\');'.PHP_EOL.
+						 '$(\''.$this->pageSubtitleID.'\').empty();'.PHP_EOL.
+						 $nextStep;  
 				return $this->setjFunc($mainAnimID,$mainAnimFunc,$animType,$content,$step);
 				break;
 				
 			case 2:
+				unset($content);
 				$animType=$this->animTypes[2];
-				$content='$(\''.$this->pageID.'\').removeClass(\'splash\');
-						  $(\''.$this->pageID.'\').attr(\'id\',\'page-header-container\');
-						  $(\''.$this->pageBrandID.'\').removeClass(\'splash\');
-						  $(\''.$this->pageBrandID.'\').attr(\'id\',\'page-brand\');
-						  $(\''.$this->pageSubtitleID.'\').remove(); 
-						  $(\''.$this->pageHeaderID.'\').attr(\'id\',\'page-header\');'; 
+				$content='$(\''.$this->pageID.'\').removeClass(\''.self::NAME_SPLASH.'\');'.PHP_EOL.
+						 '$(\''.$this->pageID.'\').attr(\'id\',\''.$prefixID.$seperatorID.'header'.$seperatorID.'container\');'.PHP_EOL.
+						 '$(\''.$this->pageBrandID.'\').removeClass(\''.self::NAME_SPLASH.'\');'.PHP_EOL.
+						 '$(\''.$this->pageBrandID.'\').attr(\'id\',\''.$prefixID.$seperatorID.'brand\');'.PHP_EOL.
+						 '$(\''.$this->pageSubtitleID.'\').remove();'.PHP_EOL.
+						 '$(\''.$this->pageHeaderID.'\').attr(\'id\',\''.$prefixID.$seperatorID.'header\');'.PHP_EOL;
 				return $this->setjFunc($mainAnimID,$mainAnimFunc,$animType,$content,$step);
 				break;
 				
@@ -137,13 +119,10 @@ trait SplashRessourceManagement {
 				$this->animTypes=$animTypes;
 				unset($animTypes);
 				$animType=$this->animTypes[0];
-				$content='setTimeout(function(){
-						  '.$this->jQuery_addClassesTo(array($this->pageSubtitleID,$this->pageBrandID),
-						  							   array($mainAnimClass.' '.$subtitleAnimOutro,
-													   		 $mainAnimClass.' '.$brandAnimOutro)).
-															 $this->splash(NULL,2,1).'
-						  },timeoutSteps);/* /eof setTimeout*/
-						  clearTimeout();';
+				$content=$this->jSetTimeout($this->jQuery_addClassesTo(array($this->pageSubtitleID,$this->pageBrandID),
+						  							 	   			   array($mainAnimClass.' '.$subtitleAnimOutro,
+													   	   	     			 $mainAnimClass.' '.$brandAnimOutro)).PHP_EOL.
+														   	     	   $this->splash(NULL,2,1),'timeoutSteps');
 				return $this->setjFunc($mainAnimID,$mainAnimFunc,$animType,$content,$step);
 				break;
 		}//Eof Switch
