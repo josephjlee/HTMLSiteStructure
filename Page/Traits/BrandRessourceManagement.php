@@ -16,42 +16,67 @@ trait BrandRessourceManagement {
  */	
 	public function setConfig(){
 		
-		$prefixBrand='brand';
-		$prefixID='page';
-		$seperatorID='-';
-		$subtitleCssClass='subtitle ';
+		/*
+		* Prefix and seperator
+		*/
+		$s='-';
+		$id='page';
+		$prefixHeader='header';
+		$prefixContainer='container';
 		
+		/*
+		* Steps for tweening (0, 1 or 2)
+		* 
+		*/
+		$steps=1;
+		$mainAnimationClass='animated';
+		$mainAnimationFunction='animateCss';
 		
-		$brandID=$this->jQuery_setParam($prefixID.$seperatorID.$prefixBrand);
-		$brandCssClass=$prefixBrand;
-		$brandWidth=$this->jQuery_setParam('83');
-		$brandHeight=$this->jQuery_setParam('38');
+		/*
+		* 
+		*/
+		$subtitleCssClass='subtitle';
+		$subtitleAnimIntro='zoomInLeft';
+		$subtitleAnimOutro='zoomOutRight';
 		
-		if(self::USE_SPLASH)
-		{	
-			$use='true';
-			$subtitleAnimClass='animated zoomInLeft';
-			
-			$brandFirstAnimStep='bounceInDown';
-			$brandSecondAnimStep='zoomOutLeft';
-			$brandThirdAnimStep='bounceInDown';
-					
-			$brandSplashID=$this->jQuery_setParam($prefixID.$seperatorID.self::NAME_SPLASH.$seperatorID.$prefixBrand);
-			$brandTimeoutSteps=5000;
-		}
-		else
-		{
-			$use='false';
-			$brandSplashID='';
-		}
+		/*
+		* Set configuration var for brand
+		*/
+		$brand='brand';//Classname
+		$brandWidth='83';
+		$brandHeight='38';
+		$brandFirstAnimStep='bounceInDown';//Brand intro
+		$brandSecondAnimStep='zoomOutLeft';//Brand outro after first animation tween instance
+		$brandThirdAnimStep='bounceInDown';//Need to fix: actually it is not really running
+		$brandTimeoutSteps=5000;//Set Timeout between tweening, when splash is used
 		
-		return array('bid'=>$brandID,
-					 'cls'=>$brandCssClass,
+		/*
+		* Set id's
+		*/
+		$headerID=$id.$s.$prefixHeader;
+		$headerContainerID=$id.$s.$prefixHeader.$s.$prefixContainer;
+		$brandID=$id.$s.$brand;
+		
+		/*
+			Configurations in splash method:
+			$mainAnimID=$this->pageBrandID;
+		*/
+		$use=(self::USE_SPLASH)?'true':'false';	
+		$brandSplashID=(self::USE_SPLASH)?$id.$s.self::NAME_SPLASH.$s.$brand:NULL;
+		
+		return array('steps'=>$steps,
+					 'bid'=>$brandID,
+					 'hid'=>$headerID,
+					 'hcid'=>$headerContainerID,
+					 'cls'=>$brand,
 					 'width'=>$brandWidth,
 					 'height'=>$brandHeight,
 					 'scls'=>$subtitleCssClass,
 					 'use'=>$use,
-					 'sacls'=>$subtitleAnimClass,
+					 'macls'=>$mainAnimationClass,
+					 'mafnc'=>$mainAnimationFunction,
+					 'saint'=>$subtitleAnimIntro,
+					 'saout'=>$subtitleAnimOutro,
 					 'ba1'=>$brandFirstAnimStep,
 					 'ba2'=>$brandSecondAnimStep,
 					 'ba3'=>$brandThirdAnimStep,
@@ -73,13 +98,20 @@ trait BrandRessourceManagement {
 			
 			case 'jquery-docready':
 				
-				$=$this->setConfig();
+				$c='';
+				$c=$this->setConfig();
 				
-				return  "\t\t\t\t".'var brand=new Brand('.$c['width'].','.$c['height'].','.$c['bid'].','.$c['bspid'].','.$c['use'].');'.PHP_EOL.
-					    "\t\t\t\t".'var timeoutSteps='.$c['bto'].';'.PHP_EOL.
-					    $this->jQuery_addClassesTo(array($this->pageBrandID,$this->pageSubtitleID),
-												   array($c['cls'],$c['scls'].$c['sacls'])).
-					   (self::USE_SPLASH?$this->splash(array($c['ba1'],$c['ba2'],$c['ba3'])):'');
+				$subtitleClass=$c['scls'].((self::USE_SPLASH)?' '.$c['macls'].' '.$c['saint']:'');
+				
+				return  "\t\t\t\t".'var brand=new Brand('.$this->jParam($c['width']).','.$this->jParam($c['height']).','.$this->jParam($c['bid']).','.$this->jParam($c['bspid']).','.$c['use'].');'."\n".
+					    "\t\t\t\t".'var timeoutSteps='.$c['bto'].';'."\n".
+					    $this->jQuery_addClassesTo(array($this->brandId,$this->subtitleId),
+												   array($c['cls'],$subtitleClass)).
+					   (self::USE_SPLASH?$this->splash(array($c['ba1'],$c['ba2'],$c['ba3']),
+					   								   array($c['bid'],$c['hid'],$c['hcid']),
+													   array($c['steps'],NULL),
+													   array($c['macls'],$c['mafnc'],$c['saint'],$c['saout'])):'');
+													   
 				break;
 				
 			default:
