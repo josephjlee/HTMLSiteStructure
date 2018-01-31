@@ -56,10 +56,10 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
  * @param 
  */
 	public function __construct(
-								Mobile_Detect $detect=NULL,
-								Layout $layout=NULL,
-								Vendor $vendor=NULL
-								)
+				    Mobile_Detect $detect=NULL,
+				    Layout $layout=NULL,
+				    Vendor $vendor=NULL
+				   )
 	{
 		
 		$this->detect = $detect;
