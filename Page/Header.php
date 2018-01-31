@@ -33,10 +33,10 @@ class Header implements iHeader, iContent {
 	const SUBTITLE_SPLASH_MOBILE = 'WEB, ART & MUSIC PROJECT';//<put your subtitle here>
 	
 	//
-	public $pageID;
-	public $pageHeaderID; 
-	public $pageSubtitleID; 
-	public $pageBrandID;
+	public $pageId;//Need to fix: change name to headerContainerId
+	public $headerId; 
+	public $subtitleId; 
+	public $brandId;
 	
 	//
 	public $detect;
@@ -66,19 +66,22 @@ class Header implements iHeader, iContent {
  */	
 	public function setPageID(){
 		
+		$id='page';
+		$s='-';
+		$spl=self::NAME_SPLASH;
 		if(self::USE_SPLASH)
 		{
-			$this->pageID = 'page-splash';
-			$this->pageHeaderID = 'page-splash-header';
-			$this->pageSubtitleID = 'page-splash-subtitle';
-			$this->pageBrandID = 'page-splash-brand';
+			$this->pageId = $id.$s.$spl.$s.'container';
+			$this->headerId = $id.$s.$spl.$s.'header';
+			$this->subtitleId = $id.$s.$spl.$s.'subtitle';
+			$this->brandId = $id.$s.$spl.$s.'brand';
 		}
 		else
 		{
-			$this->pageID = 'page-header-container';
-			$this->pageHeaderID = 'page-header';
-			$this->pageSubtitleID = 'page-subtitle';
-			$this->pageBrandID = 'page-brand';
+			$this->pageId = $id.$s.'header'.$s.'container';
+			$this->headerId = $id.$s.'header';
+			$this->subtitleId = $id.$s.'subtitle';
+			$this->brandId = $id.$s.'brand';
 		}
 		
 	}//Eof Method "getPageID"
@@ -90,14 +93,14 @@ class Header implements iHeader, iContent {
  */	
 	public function setMobileContent(){
 		
-		return (self::USE_COMMENTS)?"\t\t".'<!-- bof header -->.'.PHP_EOL:''.
-			   						"\t\t".'<header class="container splash brand text-center">'.PHP_EOL.
-			   						"\t\t\t".'<h1 class="mt0">'.self::BRAND_TITLE_MOBILE.'</h1>'.PHP_EOL.
-			   						"\t\t\t".'<hr class="text-black">'.PHP_EOL.
-			   						"\t\t\t".'<p class="text-black">'.self::SUBTITLE_SPLASH_MOBILE.'</p>'.PHP_EOL.
-			   						"\t\t\t".'<hr class="text-black">'.PHP_EOL.
-			   						"\t\t".'</header>'.PHP_EOL.
-    		    (self::USECOMMENTS)?"\t\t".'<!-- /eof header -->'.PHP_EOL:'';
+		return (self::USE_COMMENTS)?"\t\t".'<!-- bof header -->.'."\n":''.
+			   						"\t\t".'<header class="container splash brand text-center">'."\n".
+			   						"\t\t\t".'<h1 class="mt0">'.self::BRAND_TITLE_MOBILE.'</h1>'."\n".
+			   						"\t\t\t".'<hr class="text-black">'."\n".
+			   						"\t\t\t".'<p class="text-black">'.self::SUBTITLE_SPLASH_MOBILE.'</p>'."\n".
+			   						"\t\t\t".'<hr class="text-black">'."\n".
+			   						"\t\t".'</header>'."\n".
+    		    (self::USE_COMMENTS)?"\t\t".'<!-- /eof header -->'."\n":'';
 		
 	}//Eof Method "setMobileContent"
 
@@ -109,7 +112,8 @@ class Header implements iHeader, iContent {
 	public function setContent(){
 			
 		// Exclude tablets.
-		if($this->detect->isMobile()){
+		if($this->detect->isMobile())
+		{
 			
 			$this->setMobileContent();
 			
@@ -118,14 +122,14 @@ class Header implements iHeader, iContent {
 		{
 			if(self::USE_SPLASH)
 			{
-				return "\t\t".'<div id="'.$this->pageID.'" class="splash container'.$this->layout->cDepth2.'">'.PHP_EOL.
-					   "\t\t\t".'<!-- bof header -->'.PHP_EOL.
-					   "\t\t\t".'<header id="'.$this->pageHeaderID.'" class="container">'.PHP_EOL.
-					   "\t\t\t\t".'<h1 id="'.$this->pageBrandID.'"></h1>'.PHP_EOL.
-					   "\t\t\t\t".'<p id="'.$this->pageSubtitleID.'">'.self::SUBTITLE_SPLASH.'</p>'.PHP_EOL.
-					   "\t\t\t".'</header>'.PHP_EOL.    
-					   "\t\t\t".'<!-- /eof header -->'.PHP_EOL.
-					   "\t\t".'</div>'.PHP_EOL;
+				return "\t\t".'<div id="'.$this->pageId.'" class="splash container'.$this->layout->cDepth2.'">'."\n".
+					   "\t\t\t".'<!-- bof header -->'."\n".
+					   "\t\t\t".'<header id="'.$this->headerId.'" class="container">'."\n".
+					   "\t\t\t\t".'<h1 id="'.$this->brandId.'"></h1>'."\n".
+					   "\t\t\t\t".'<p id="'.$this->subtitleId.'">'.self::SUBTITLE_SPLASH.'</p>'."\n".
+					   "\t\t\t".'</header>'."\n".    
+					   "\t\t\t".'<!-- /eof header -->'."\n".
+					   "\t\t".'</div>'."\n";
 			}
 			else return;
 		} 

@@ -85,7 +85,7 @@ class Meta implements iMeta, iContent {
  */
  	public function ieCompability(){
 		
-	$compMode='IE=edge';
+		$compMode='IE=edge';
         return "\t\t".'<meta http-equiv="X-UA-Compatible" content="'.$compMode.'" />'.PHP_EOL;
 		
 	}//Eof Method "charset"
@@ -97,7 +97,7 @@ class Meta implements iMeta, iContent {
  */
  	public function title(){
 		
-	$title='Your Pagetitle here';
+		$title='DMOUNT';
         return "\t\t".'<title>'.$title.'</title>'.PHP_EOL;
 		
 	}//Eof Method "title"
@@ -110,7 +110,7 @@ class Meta implements iMeta, iContent {
  	public function manifest(){
 		
        return ((self::USE_COMMENTS)?"\t\t".'<!-- Manifest -->'.PHP_EOL:'').
-        	  		    "\t\t".'<link rel="manifest" href="site.webmanifest">'.PHP_EOL;
+        	  						"\t\t".'<link rel="manifest" href="site.webmanifest">'.PHP_EOL;
 			   
 	}//Eof Method "manifest"
 	
@@ -121,9 +121,9 @@ class Meta implements iMeta, iContent {
  */
 	public function description(){
 	
-	$description='Put your description here';
+		$description='Webdevelopment, art advising and a journey into Music"';
         return "\t\t".'<!-- SEO -->'.PHP_EOL.
-               "\t\t".'<meta name="description" content="'.$description.'">'.PHP_EOL;
+        	   "\t\t".'<meta name="description" content="'.$description.'">'.PHP_EOL;
 
 	}//Eof Method "description"
 
@@ -134,7 +134,7 @@ class Meta implements iMeta, iContent {
  */	
 	public function keywords(){
 		
-	$keywords='Keyword1, Keyword2, Keyword3';
+		$keywords='Berlin,Art,Music,Webdevelopment';
         return "\t\t".'<meta name="keywords" lang="en" content="'.$keywords.'">'.PHP_EOL;
 		
 	}//Eof Method "keywords"
@@ -150,10 +150,10 @@ class Meta implements iMeta, iContent {
 		$appleMobileWebAppTitle='d.Mount';
 		
 		return ((self::USE_COMMENTS)?"\t\t".'<!-- Apple Mobile App Title, Pinned Tab (Safari), Mobile App Icon -->'.PHP_EOL:'').
-        	   			     "\t\t".'<meta name="mobile-web-app-capable" content="'.$appleMobileWebAppCapable.'">'.PHP_EOL. 
-        	   			     "\t\t".'<meta name="apple-mobile-web-app-title" content="'.$appleMobileWebAppTitle.'">'.PHP_EOL.
-        	   			     "\t\t".'<link rel="mask-icon" sizes="any" href="'.$this->subDomain().STATIC_IMG.'ico/favicon.svg" color="#fff">'.PHP_EOL.
-        	   			     "\t\t".'<link rel="apple-touch-icon" sizes="192x192" href="'.$this->subDomain().STATIC_IMG.'ico/apple-touch-icon-192x192.png">'.PHP_EOL;
+        	   						 "\t\t".'<meta name="mobile-web-app-capable" content="'.$appleMobileWebAppCapable.'">'.PHP_EOL. 
+        	   						 "\t\t".'<meta name="apple-mobile-web-app-title" content="'.$appleMobileWebAppTitle.'">'.PHP_EOL.
+        	   						 "\t\t".'<link rel="mask-icon" sizes="any" href="'.$this->subDomain().STATIC_IMG.'ico/favicon.svg" color="#fff">'.PHP_EOL.
+        	   						 "\t\t".'<link rel="apple-touch-icon" sizes="192x192" href="'.$this->subDomain().STATIC_IMG.'ico/apple-touch-icon-192x192.png">'.PHP_EOL;
 		
 	}//Eof Method "apple"
 
@@ -164,13 +164,13 @@ class Meta implements iMeta, iContent {
  */
 	public function viewport(){
 		
-	$width='device-width,';
-	$initScale='1.0';
-	$maxScale='1.0';
-	$userScalable='no';
-	$content='width='.$width.', initial-scale='.$initScale.', maximum-scale='.$maxScale.', user-scalable='.$userScalable.'';
+		$width='device-width,';
+		$initScale='1.0';
+		$maxScale='1.0';
+		$userScalable='no';
+		$content='width='.$width.', initial-scale='.$initScale.', maximum-scale='.$maxScale.', user-scalable='.$userScalable.'';
         return ((self::USE_COMMENTS)?"\t\t".'<!-- Viewport -->'.PHP_EOL:'').
-        	   		     "\t\t".'<meta name="viewport" content="'.$content.'">'.PHP_EOL;
+        	   						 "\t\t".'<meta name="viewport" content="'.$content.'">'.PHP_EOL;
 		
 	}//Eof Method "viewport"
 
@@ -182,7 +182,7 @@ class Meta implements iMeta, iContent {
 	public function canonical(){
 		
 		return ((self::USE_COMMENTS)?"\t\t".'<!--- Canonical -->'.PHP_EOL:'').
-        	   			     "\t\t".'<link rel="canonical" href="https://'.$_SERVER['HTTP_HOST'].'/index.php">'.PHP_EOL;
+        	   						 "\t\t".'<link rel="canonical" href="https://'.$_SERVER['HTTP_HOST'].'/index.php">'.PHP_EOL;
 		
 	}//Eof Method "canonical"
 
@@ -194,14 +194,14 @@ class Meta implements iMeta, iContent {
 	public function setContent(){
 		
 		return $this->charset().
-		       $this->ieCompability().
-		       $this->title().
-		       $this->manifest().
-		       $this->description().
-		       $this->keywords().
-		       $this->apple().
-		       $this->viewport().
-		       $this->canonical();
+			   $this->ieCompability().
+			   $this->title().
+			   $this->manifest().
+			   $this->description().
+			   $this->keywords().
+			   $this->apple().
+			   $this->viewport().
+			   $this->canonical();
 		
 	}//Eof Method "setContent"
 	

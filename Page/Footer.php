@@ -31,24 +31,24 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
 	const USE_SPLASH = true;
 	const NAME_SPLASH = 'splash';
 	
-	//
-	public $pageID;
-	public $pageHeaderID; 
-	public $pageSubtitleID; 
-	public $pageBrandID;
+	//Var
+	public $pageId;//Need to fix: change name to headerContainerId
+	public $headerId; 
+	public $subtitleId; 
+	public $brandId;
 	
 	//
-	private $animTypes=array();
+	private $animations=array();
 
-	//
+	//Class Objects
 	public $detect;
 	public $layout;
 	public $vendor;
 
 	//Trait		
-	use RessourceManagement\SplashRessourceManagement,
-	    RessourceManagement\BrandRessourceManagement,
-	    RessourceManagement\JavaScriptRessourceManagement;
+	use	RessourceManagement\SplashRessourceManagement,
+		RessourceManagement\BrandRessourceManagement,
+		RessourceManagement\JavaScriptRessourceManagement;
 
 /**
  * Construct an instance of this class
@@ -56,10 +56,10 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
  * @param 
  */
 	public function __construct(
-				    Mobile_Detect $detect=NULL,
-				    Layout $layout=NULL,
-				    Vendor $vendor=NULL
-				   )
+								Mobile_Detect $detect=NULL,
+								Layout $layout=NULL,
+								Vendor $vendor=NULL
+								)
 	{
 		
 		$this->detect = $detect;
@@ -96,13 +96,13 @@ class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
  */
 	public function setPageID(){
 		
-		$prefixID='page';
-		$seperatorID='-';
+		$id='page';
+		$s='-';
 		$pound=(!self::USE_SPLASH)?'#':'';
-		$this->pageID = $pound.$prefixID.$seperatorID.'header-container';
-		$this->pageHeaderID = $pound.$prefixID.$seperatorID.'header';
-		$this->pageSubtitleID = $pound.$prefixID.$seperatorID.'subtitle';
-		$this->pageBrandID = $pound.$prefixID.$seperatorID.'brand';
+		$this->pageId = $pound.$id.$s.'header'.$s.'container';
+		$this->headerId = $pound.$id.$s.'header';
+		$this->subtitleId = $pound.$id.$s.'subtitle';
+		$this->brandId = $pound.$id.$s.'brand';
 		
 	}//Eof Method "setPageID"
 
