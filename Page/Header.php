@@ -48,9 +48,9 @@ class Header implements iHeader, iContent {
  * @param 
  */	
 	public function __construct(
-								Mobile_Detect $detect=NULL,
-								Layout $layout=NULL
-								)
+				    Mobile_Detect $detect=NULL,
+				    Layout $layout=NULL
+				   )
 	{
 		
 		$this->detect = $detect;
