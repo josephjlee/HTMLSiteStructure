@@ -1,6 +1,6 @@
 <?php
 /*
- * TRAIT :: BRANDRESSOURCEMANAGEMENT
+ * TRAIT :: VENDORRESSOURCEMANAGEMENT
  * ==================================
  *
  *
@@ -22,15 +22,18 @@ Stylesheet Library
  */	
 	public function setCSS_FontAwesome(){
 		
+		$s='-';
+		$version='5.0.1';
+		$name='fontawesome-all'.$s.$version.self::MIN_CSS;
+		$str='';
 		if(self::USE_CDN)
 		{
-			return '<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome'.self::MIN_CSS.'" rel="stylesheet">';	
+			$str='<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome'.self::MIN_CSS.'" rel="stylesheet">';	
 		}
-		else return (self::USE_FONTAWESOME)?"\t\t".'<link href="'.$this->subDomain().
-							 						  	   STATIC_CSS.self::FILE_DIR.
-							 						  	   'fontawesome-all-5.0.1'.
-							 						  	   self::MIN_CSS.'" rel="stylesheet">'.PHP_EOL:'';
-							 	
+		else $str='<link href="'.$this->cannonical(STATIC_CSS).$name.'" rel="stylesheet">';
+		
+		return (self::USE_FONTAWESOME)?$this->tabs.$str.$this->eol:'';
+						 	
 	}//Eof Method "setCSS_FontAwesome"
 
 /**
@@ -40,14 +43,17 @@ Stylesheet Library
  */	
 	public function setCSS_BootsTrap(){
 		
+		$s='-';
+		$version='4.0.0';
+		$name='bootstrap'.$s.$version.self::MIN_CSS;
+		$str='';
 		if(self::USE_CDN)
 		{
-			return '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap'.self::MIN_CSS.'" rel="stylesheet">';
+			$str='<link href="https://maxcdn.bootstrapcdn.com/bootstrap/'.$version.'/css/bootstrap'.self::MIN_CSS.'" rel="stylesheet">';
 		}
-		else return (self::USE_BOOTSTRAP)?"\t\t".'<link href="'.$this->subDomain().
-							 	  						 		STATIC_CSS.self::FILE_DIR.
-							 	  						 		'bootstrap-4.0.0'.
-							 	  						 		self::MIN_CSS.'" rel="stylesheet">'.PHP_EOL:'';
+		else $str='<link href="'.$this->cannonical(STATIC_CSS).$name.'" rel="stylesheet">';
+		
+		return (self::USE_BOOTSTRAP)?$this->tabs.$str.$this->eol:'';
 							 
 	}//Eof Method "setCSS_BootsTrap"
 	
@@ -58,15 +64,18 @@ Stylesheet Library
  */	
 	public function setCSS_Animate(){
 		
+		$s='-';
+		$version='3.5.2';
+		$name='animate'.$s.$version.self::MIN_CSS;
+		$str='';
 		if(self::USE_CDN)
 		{
-			return '<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate'.self::MIN_CSS.'" rel="stylesheet" >';
+			$str='<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/'.$version.'/animate'.self::MIN_CSS.'" rel="stylesheet" >';
 		}
-		else return (self::USE_BOOTSTRAP)?"\t\t".'<link href="'.$this->subDomain().
-								  					     		STATIC_CSS.self::FILE_DIR.
-								  					     		'animate-3.5.2'.
-								  					     		self::MIN_CSS.'" rel="stylesheet">'.PHP_EOL:'';
-								   
+		else $str='<link href="'.$this->cannonical(STATIC_CSS).$name.'" rel="stylesheet">';
+		
+		return (self::USE_ANIMATE)?$this->tabs.$str.$this->eol:'';
+						   
 	}//Eof Method "setCSS_Animated"
 
 /**************************************************************************
@@ -82,10 +91,11 @@ Stylesheet Library Extensions
  */	
 	public function setExtCSS_FullPage(){
 		
-		return (self::USE_JQUERY && self::USE_FULLPAGE)?"\t\t".'<link href="'.$this->subDomain().
-																	  		  STATIC_CSS.self::FILE_DIR.
-																	  		  'jquery.fullpage-2.9.5'.
-																	  		  self::MIN_CSS.'" rel="stylesheet">'.PHP_EOL:'';
+		$s='-';
+		$version='2.9.5';
+		$name='jquery.fullpage'.$s.$version.self::MIN_CSS;
+		$str='<link href="'.$this->cannonical(STATIC_CSS).$name.'" rel="stylesheet">';
+		return (self::USE_JQUERY && self::USE_FULLPAGE)?$this->tabs.$str.$this->eol:'';
 	
 	}//Eof Method "setExtCss_FullPage"
 
@@ -102,14 +112,17 @@ JavaScript Library
  */
 	public function setJS_jQuery(){
 		
+		$s='-';
+		$version='3.2.1';
+		$name='jquery'.$s.$version.self::MIN_JS;
+		$str='';
 		if(self::USE_CDN)
 		{
-			return '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery'.self::MIN_JS.'"></script>';	
+			$str='<script src="https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery'.self::MIN_JS.'"></script>';	
 		}
-		else return (self::USE_JQUERY)?"\t\t".'<script src="'.$this->subDomain().
-												 	   		  STATIC_JS.self::FILE_DIR.
-												 	   		  'jquery-3.2.1'.
-												 	   		  self::MIN_JS.'"></script>'.PHP_EOL:'';
+		else $str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		
+		return (self::USE_JQUERY)?$this->tabs.$str.$this->eol:'';
 												 
 	}//Eof Method "setJS_jQuery"
 
@@ -120,11 +133,12 @@ JavaScript Library
  */
 	public function setJS_Tether(){
 		
-		return (self::USE_JQUERY)?"\t\t".'<script src="'.$this->subDomain().
-							 					 		 STATIC_JS.self::FILE_DIR.
-							 							 'tether-1.3.3'.
-							 					 		 self::MIN_JS.'"></script>'.PHP_EOL:'';
-							 	
+		$s='-';
+		$version='1.3.3';
+		$name='tether'.$s.$version.self::MIN_JS;
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_JQUERY)?$this->tabs.$str.$this->eol:'';
+						 	
 	}//Eof Method "setJS_Tether"
 
 /**
@@ -134,14 +148,17 @@ JavaScript Library
  */	
 	public function setJS_BootsTrap(){
 		
+		$s='-';
+		$version='4.0.0';
+		$name='bootstrap'.$s.$version.self::MIN_JS;
+		$str='';
 		if(self::USE_CDN)
 		{
-			return '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap'.self::MIN_JS.'" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>';
+			$str='<script src="https://maxcdn.bootstrapcdn.com/bootstrap/'.$version.'/js/bootstrap'.self::MIN_JS.'" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>';
 		}
-		else return (self::USE_BOOTSTRAP)?"\t\t".'<script src="'.$this->subDomain().
-							  						 	  		 STATIC_JS.self::FILE_DIR.
-							  						 	  		 'bootstrap-4.0.0'.
-							  						 	  		 self::MIN_JS.'"></script>'.PHP_EOL:'';
+		else $str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		
+		return (self::USE_BOOTSTRAP)?$this->tabs.$str.$this->eol:'';
 							  
 	}//Eof Method "setJS_BootsTrap"
 
@@ -152,10 +169,11 @@ JavaScript Library
  */	
 	public function setJS_FontAwesome(){
 		
-		return (self::USE_FONTAWESOME)?"\t\t".'<script defer src="'.$this->subDomain().
-															 		STATIC_JS.self::FILE_DIR.
-															 		'fontawesome-all-5.0.1'.
-															 		self::MIN_JS.'"></script>'.PHP_EOL:'';
+		$s='-';
+		$version='5.0.1';
+		$name='fontawesome-all'.$s.$version.self::MIN_JS;
+		$str='<script defer src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_FONTAWESOME)?$this->tabs.$str.$this->eol:'';
 									
 	}//Eof Method "setJS_FontAwesome"
 
@@ -166,10 +184,11 @@ JavaScript Library
  */	
 	public function setJS_Howler(){
 		
-		return (self::USE_HOWLER)?"\t\t".'<script src="'.$this->subDomain().
-							 					  STATIC_JS.self::FILE_DIR.
-							 					  'howler-2.0.7.core'.
-							 					  self::MIN_JS.'"></script>'.PHP_EOL:'';
+		$s='-';
+		$version='2.0.7';
+		$name='howler'.$s.$version.'.core'.self::MIN_JS;
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_HOWLER)?$this->tabs.$str.$this->eol:'';
 							 
 	}//Eof Method "setJS_Howler"
 
@@ -186,9 +205,11 @@ JavaScript Library Extensions
  */
 	public function setExtJS_jQueryAnimateCSS(){
 		
-		return (self::USE_JQUERY && self::USE_ANIMATEJS)?"\t\t".'<script src="'.$this->subDomain().
-												 						 		STATIC_JS.self::FILE_DIR.
-												 						 		'jquery.animate-3.5.2.js"></script>'.PHP_EOL:'';
+		$s='-';
+		$version='3.5.2';
+		$name='jquery.animate'.$s.$version.'.js';
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_JQUERY && self::USE_ANIMATEJS)?$this->tabs.$str.$this->eol:'';
 																		 
 	}//Eof Method "setExtJS_jQueryAnimateCSS"
 
@@ -198,11 +219,12 @@ JavaScript Library Extensions
  * @param 
  */
 	public function setExtJS_jQueryFullpage(){
-		
-        return (self::USE_JQUERY && self::USE_FULLPAGE)?"\t\t".'<script src="'.$this->subDomain().
-												 							   STATIC_JS.self::FILE_DIR.
-												 							   'jquery.fullpage-2.9.5'.
-												 							   self::MIN_JS.'"></script>'.PHP_EOL:'';
+	
+		$s='-';
+		$version='2.9.5';
+		$name='jquery.fullpage'.$s.$version.self::MIN_JS;
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+        return (self::USE_JQUERY && self::USE_FULLPAGE)?$this->tabs.$str.$this->eol:'';
 																			   
 	}//Eof Method "setExtJS_jQueryFullpage"
     	
@@ -212,12 +234,12 @@ JavaScript Library Extensions
  * @param 
  */	
 	public function setExtJS_HowlerSpatial(){
-		
-		return (self::USE_HOWLER && self::USE_SPATIAL)?"\t\t".'<script src="'.$this->subDomain().
-												 				 	  		  STATIC_JS.self::FILE_DIR.
-												 				 	  		  'howler-2.0.7.spatial'.
-												 				 	  		  self::MIN_JS.'"></script>'.PHP_EOL:'';
-																			  
+	
+		$s='-';
+		$version='2.0.7';
+		$name='howler'.$s.$version.'.spatial'.self::MIN_JS;
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_HOWLER && self::USE_SPATIAL)?$this->tabs.$str.$this->eol:'';																	  
 												 
 	}//Eof Method "setExtJS_HowlerSpatial"
 
@@ -234,9 +256,9 @@ JavaScript Tools
  */	
 	public function setJS_Modernizer(){
 		
-		return (self::USE_MODERNIZER)?"\t\t".'<script src="'.$this->subDomain().
-							  				   		 		 STATIC_JS.self::FILE_DIR.
-							  				   		 		 'modernizr.js"></script>'.PHP_EOL:'';
+		$name='modernizr.js';
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_MODERNIZER)?$this->tabs.$str.$this->eol:'';
 		
 	}//Eof Method "setJS_Modernizer"
 	
@@ -247,9 +269,9 @@ JavaScript Tools
  */	
 	public function setJS_ImagesLoaded(){
 		
-		return (self::USE_IMAGESLOADED)?"\t\t".'<script src="'.$this->subDomain().
-							  					 	   		   STATIC_JS.self::FILE_DIR.
-							  					 	   		   'imagesloaded.pkgd.js"></script>'.PHP_EOL:'';
+		$name='imagesloaded.pkgd.js';
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_IMAGESLOADED)?$this->tabs.$str.$this->eol:'';
 							  
 	}//Eof Method "setJS_ImagesLoaded"
 	
@@ -260,9 +282,9 @@ JavaScript Tools
  */	
 	public function setJS_iOsOrientationChange(){
 		
-		return (self::USE_IOS_ORIENTATIONCHANGE)?"\t\t".'<script src="'.$this->subDomain().
-																		STATIC_JS.self::FILE_DIR.
-																		'ios-orientationchange-fix.js"></script>'.PHP_EOL:'';
+		$name='ios-orientationchange-fix.js';
+		$str='<script src="'.$this->cannonical(STATIC_JS).$name.'"></script>';
+		return (self::USE_IOS_ORIENTATIONCHANGE)?$this->tabs.$str.$this->eol:'';
 		
 	}//Eof Method "setJS_iOsOrientationChange"
 	

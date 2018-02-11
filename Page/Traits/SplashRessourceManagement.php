@@ -60,13 +60,38 @@ trait SplashRessourceManagement {
 		$s='-';
 		$pound='#';
 		$spl=self::NAME_SPLASH;
+		$prefix=$pound.$id.$s.$spl.$s;
 		
-		$this->pageId = $pound.$id.$s.$spl.$s.'container';
-		$this->headerId = $pound.$id.$s.$spl.$s.'header';
-		$this->subtitleId = $pound.$id.$s.$spl.$s.'subtitle';
-		$this->brandId = $pound.$id.$s.$spl.$s.'brand';
+		if($this->step==2)
+		{
+			$prefix=$pound.$id.$s;
+		}
+		
+		$this->headerContainerId = $prefix.'container';
+		$this->headerId = $prefix.'header';
+		$this->subtitleId = $prefix.'subtitle';
+		$this->brandId = $prefix.'brand';
 		
 	}//Eof Method "setSplashID"
+
+/**
+ * 
+ *
+ * @param 
+ * @param
+ * @param
+ */
+	public function reinjectStepToDefault(array $arr1, array $arr2, string $subtitle, string $header, string $function){
+		
+		$str='';
+		$str.=$this->jQuery_removeClassesEmptyElement($arr1);
+		$str.=$this->jQuery_removeClassesAddAttributes($arr2);
+		$str.=$this->jQuery_removeElement($subtitle);
+		$str.=$this->jQuery_setAttributeToElement(array($header,'id',$this->hid));
+		$str.=$function;
+		return $str;
+		
+	}//Eof Method "reinjectStep"
 
 /**
  * Call splash screen
@@ -122,29 +147,32 @@ trait SplashRessourceManagement {
 		if($this->step===NULL)
 			$this->steps=($tween[0]>=3)?0:$tween[0];
 
+		if($this->step===2)
+			$this->setSplashID();
+
 		/*
 		* Tag id, where we use the animation callback functionality
 		*/
 		$spl=self::NAME_SPLASH;
-		$mainAnimID=$this->brandId;
-
+		$mainAnimId=$this->brandId;
+		$subtitle=$this->subtitleId;
+		$header=$this->headerId;
+		$headerContainer=$this->headerContainerId;
+		
 		switch($this->step)
 		{
 			//
 			case 1:
-				$nextStep=($this->steps>1)?$this->splash(NULL,NULL,array(NULL,$tweenInstance)):'';
+			//...,
+				$next=($this->steps>1)?$this->splash(NULL,NULL,array(NULL,$tweenInstance)):'';
 				$anim=$this->animations[1];
-				$pidArr=array($mainAnimID=>array('removecls'=>$this->c[0].' '.$this->animations[0].' '.$anim),
-							  $this->subtitleId=>array('removecls'=>$this->c[0].' '.$this->c[2].' '.$this->c[3]));
-				$pidArr2=array($this->pageId=>array('removecls'=>$spl,'id'=>$this->hcid),
-							   $mainAnimID=>array('removecls'=>$spl,'id'=>$this->bid));					  
-				$content=$this->jQuery_removeClassesEmptyElement($pidArr).
-						 $this->jQuery_removeClassesAddAttributes($pidArr2).
-						 $this->jQuery_removeElement($this->subtitleId).
-						 $this->jQuery_setAttributeToElement(array($this->headerId,'id',$this->hid)).
-						 $nextStep; 
-				return $this->jFunc($mainAnimID,$this->c[1],$anim,$content,$this->step);
-				unset($pidArr,$pidArr2,$content);
+				$arr1=array($mainAnimId=>array('removecls'=>$this->c[0].' '.$this->animations[0].' '.$anim),
+							$subtitle=>array('removecls'=>$this->c[0].' '.$this->c[2].' '.$this->c[3]));
+				$arr2=array($headerContainer=>array('removecls'=>$spl,'id'=>$this->hcid),
+							$mainAnimId=>array('removecls'=>$spl,'id'=>$this->bid));					  
+				$content=$this->reinjectStepToDefault($arr1,$arr2,$subtitle,$header,$next); 
+				return $this->jFunc($mainAnimId,$this->c[1],$anim,$content,$this->step);
+				unset($arr1,$arr2,$content);
 				break;
 			
 			//Need to fix: step 2, to do: Optimize the step
@@ -155,15 +183,21 @@ trait SplashRessourceManagement {
 				* - put pidArr to step 1 and renamed it to pidArr2
 				* Old work-around (no values):
 				* $anim=$this->animations[2];
-				* $pidArr='';					  
+				* $arr='';					  
 				* $content='';
-				* return $this->jFunc($mainAnimID,$this->c[1],$anim,$content,$this->step);
+				* return $this->jFunc($mainAnimId,$this->c[1],$anim,$content,$this->step);
 				* unset($anim,$pidArr,$content);
 				*
 				* If splash screen has two steps, this is the last optional callback
 				* At the moment no values, may a workaround to build page
 				*
 				*/
+				$anim=$this->animations[2];//last animation name
+				$content='';   
+				$content.=$this->jQuery_addClassTo(array('#page-brand','brand animated fadeInRight img-s'));
+	
+				return $content;
+				
 				break;
 			
 			//
@@ -173,15 +207,15 @@ trait SplashRessourceManagement {
 				if($this->steps>0)
 				{
 					$content=$this->jSetTimeout(
-								 $this->jQuery_addClassesTo(array($this->subtitleId,$mainAnimID),
+								 $this->jQuery_addClassesTo(array($this->subtitleId,$mainAnimId),
 															array($this->c[0].' '.$this->c[3],
 																  $this->c[0].' '.$anim)).
-							 $this->splash(NULL,NULL,array(NULL,$tweenInstance)),'timeoutSteps');
+							 	 $this->splash(NULL,NULL,array(NULL,$tweenInstance)),'timeoutSteps');
 				}
-				else $content=$this->jQuery_addClassesTo(array($this->subtitleId,$mainAnimID),
+				else $content=$this->jQuery_addClassesTo(array($this->subtitleId,$mainAnimId),
 														 array($this->c[0].' '.$this->c[3],
 													  		   $this->c[0].' '.$anim));
-				return $this->jFunc($mainAnimID,$this->c[1],$anim,$content,$this->step);
+				return $this->jFunc($mainAnimId,$this->c[1],$anim,$content,$this->step);
 				
 				break;
 				

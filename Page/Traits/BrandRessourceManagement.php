@@ -20,15 +20,15 @@ trait BrandRessourceManagement {
 		* Prefix and seperator
 		*/
 		$s='-';
-		$id='page';
+		$id=self::MAIN_NAME_ID;
 		$prefixHeader='header';
 		$prefixContainer='container';
 		
 		/*
-		* Steps for tweening (0, 1 or 2)
-		* 
+		* Steps for tweening in splash screen (0, 1 or 2)
+		* Need to fix: set configuration to splash screen
 		*/
-		$steps=1;
+		$steps=self::STEPS;
 		$mainAnimationClass='animated';
 		$mainAnimationFunction='animateCss';
 		
@@ -42,13 +42,13 @@ trait BrandRessourceManagement {
 		/*
 		* Set configuration var for brand
 		*/
-		$brand='brand';//Classname
+		$brand='brand';//Classname & prefix for id
 		$brandWidth='83';
 		$brandHeight='38';
 		$brandFirstAnimStep='bounceInDown';//Brand intro
 		$brandSecondAnimStep='zoomOutLeft';//Brand outro after first animation tween instance
-		$brandThirdAnimStep='bounceInDown';//Need to fix: actually it is not really running
-		$brandTimeoutSteps=5000;//Set Timeout between tweening, when splash is used
+		$brandThirdAnimStep='fadeInRight';//Need to fix: actually it is not really running
+		$brandTimeoutSteps=3000;//Set Timeout between tweening, when splash is used
 		
 		/*
 		* Set id's
@@ -59,7 +59,7 @@ trait BrandRessourceManagement {
 		
 		/*
 			Configurations in splash method:
-			$mainAnimID=$this->pageBrandID;
+			$mainAnimID=$this->brandID;
 		*/
 		$use=(self::USE_SPLASH)?'true':'false';	
 		$brandSplashID=(self::USE_SPLASH)?$id.$s.self::NAME_SPLASH.$s.$brand:NULL;
@@ -103,8 +103,8 @@ trait BrandRessourceManagement {
 				
 				$subtitleClass=$c['scls'].((self::USE_SPLASH)?' '.$c['macls'].' '.$c['saint']:'');
 				
-				return  "\t\t\t\t".'var brand=new Brand('.$this->jParam($c['width']).','.$this->jParam($c['height']).','.$this->jParam($c['bid']).','.$this->jParam($c['bspid']).','.$c['use'].');'."\n".
-					    "\t\t\t\t".'var timeoutSteps='.$c['bto'].';'."\n".
+				return  $this->tabs."\t\t".'var brand=new Brand('.$this->jParam($c['width']).','.$this->jParam($c['height']).','.$this->jParam($c['bid']).','.$this->jParam($c['bspid']).','.$c['use'].');'.$this->eol.
+					    $this->tabs."\t\t".'var timeoutSteps='.$c['bto'].';'.$this->eol.
 					    $this->jQuery_addClassesTo(array($this->brandId,$this->subtitleId),
 												   array($c['cls'],$subtitleClass)).
 					   (self::USE_SPLASH?$this->splash(array($c['ba1'],$c['ba2'],$c['ba3']),
