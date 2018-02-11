@@ -1,4 +1,4 @@
-## HTMLSiteStructure 0.0.1.1 beta
+# HTMLSiteStructure 0.0.1.1 beta
 A HTML-Boilerplate written in PHP 7 for output as template
 
 ## My Intention:
@@ -117,19 +117,19 @@ Following classes are included in the package:
   - SplashRessourceManagement.php
   - VendorRessourceManagement.php
   
-# BrandRessourceManagement
+### BrandRessourceManagement
   
   
-# HtmlRessourceManagement
+### HtmlRessourceManagement
   
   
-# JavascriptRessourceManagement
+### JavascriptRessourceManagement
 
   
-# SplashRessourceManagement
+### SplashRessourceManagement
 
   
-# VendorRessourceManagement
+### VendorRessourceManagement
 
 
 ## CSS
@@ -159,7 +159,7 @@ Please put the css files below in "/default/":
   - Tabs
   - Splash (not defined)
 
-# Other 
+## Other 
 This project grows with the time and from now on I update the version, too. The structure of all classes are not really set yet and needs to be updated. 
 
 If something is unclear, please do not hesitate to contact me for further inquiries. From time to time I will update the documentation and the project as a whole.
