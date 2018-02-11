@@ -1,60 +1,90 @@
 <?php
 /**
- * DMOUNT REC PAGE THEME
+ * CLASS :: THEME
  * =====================
  *
- * Page Theme is a ...
+ * Class Theme is a ...
  *
  * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
  *
  * @version    0.0.1
  */
-class dmr_PageTheme {
+namespace Dmount\HTMLSiteStructure;
+
+use Dmount\Core\{
+	HttpManagement\Mobile_Detect as Mobile_Detect
+};
+
+//Interface
+require_once CORE.'Page'.DINT.'Theme'.FINT;
+ 
+class Theme implements iTheme, iHtml {
 
 	//
-	const FILE_DIR_CSS = '/assets/static/css/themes/';
-	const FILE_DIR_JS = '/assets/static/js/themes/';
+	const THEME_VERSION = '0.0.1';
+	const THEME_NAME = 'default';
+
+	//Html declarations
+	private $tabs;
+	private $eol;
 
 	//
 	public $detect;
+	
+	use RessourceManagement\HtmlRessourceManagement;
 
 /**
  * Construct an instance of this class
  *
  * @param 
  */
-	public function __construct($detect=NULL){
+	public function __construct(Mobile_Detect $detect=NULL){
 		
 		$this->detect=$detect;
+		$this->nice(2);
 		
 	}//Eof Construct
 
 /**
+ * Return static subdomain for assets
+ *
+ * @return 
+ */
+	protected function subDomain(){return STATIC_SUBDOMAIN;}//Eof Method "subDomain"
+
+/**
+ * Return cannonical default dir -and filename for theme
+ *
+ * @return  
+ */
+	protected function cannonical(string $str=NULL){return $this->subDomain().$str.self::THEME_NAME.THEME_FILE.'-'.self::THEME_VERSION;}//Eof Method "cannonical"
+
+/**
  * 
  *
- * @param 
+ * @return 
  */
     public function setCSS(){
 	 
-        return '<link href="'.self::FILE_DIR_CSS.'dmr-core-0.0.1.css" rel="stylesheet">';
+        return $this->tabs.'<link href="'.$this->cannonical(THEME_CSS).'.css" rel="stylesheet">'.$this->eol;
 		
     }//Eof Method "setCSS"
 
 /**
  * 
  *
- * @param 
+ * @return 
  */
 	public function setJS(){
 		
-		return '<script src="'.self::FILE_DIR_JS.'dmr-logo-0.0.1.js"></script>';
+		return $this->tabs.'<script src="'.$this->cannonical(THEME_JS).'.js"></script>'.$this->eol;
 		
 	}//Eof Method "setJS"
 
 /**
  * 
  *
- * @param 
+ * @return 
  */	
 	public function setSource(){
 		
@@ -62,5 +92,5 @@ class dmr_PageTheme {
 		
 	}//Eof Method "setSource"
 	
-}//Eof Class "dmr_PageTheme"
+}//Eof Class "Theme"
 ?>

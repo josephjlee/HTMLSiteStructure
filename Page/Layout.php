@@ -1,15 +1,24 @@
 <?php
 /**
- * DMOUNT REC PAGE LAYOUT
+ * CLASS :: LAYOUT
  * =====================
  *
- * Page Layout is a ...
+ * Class Layout is a ...
  *
  * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
  *
  * @version    0.0.1
  */
-class dmr_PageLayout {
+namespace Dmount\HTMLSiteStructure;
+
+use Dmount\Core\{
+	HttpManagement\Mobile_Detect as Mobile_Detect
+};
+
+//Interface
+require_once CORE.'Page'.DINT.'Layout'.FINT;
+
+class Layout implements iLayout, iContent {
 
 	//Usages
 	const USE_LAYOUT_CONTAINER = false;
@@ -29,13 +38,20 @@ class dmr_PageLayout {
  *
  * @param 
  */
-	public function __construct($detect=NULL){
+	public function __construct(Mobile_Detect $detect=NULL){
 		
 		$this->detect=$detect;
 		$this->getMobileOption();
 		$this->setContentDepth();
 		
 	}//Eof Construct
+
+/**
+ * 
+ *
+ * @param 
+ */	
+	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
 
 /**
  * 
@@ -102,8 +118,8 @@ class dmr_PageLayout {
 				<!-- /eof layout -->';
 		}
 		
-	}//Eof Method "setLayoutContainer"
+	}//Eof Method "setContent"
 
-}//Eof Class 
+}//Eof Class "Layout" 
 
 ?>

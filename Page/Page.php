@@ -14,6 +14,14 @@ namespace Dmount\HTMLSiteStructure;
 //Interface
 require_once CORE.'Page'.DINT.'Content'.FINT;
 require_once CORE.'Page'.DINT.'Page'.FINT;
+require_once CORE.'Page'.DINT.'Html'.FINT;
+require_once CORE.'Page'.DINT.'jQuery'.FINT;
+
+//Trait
+require_once CORE.'Page'.DTRA.'HtmlRessourceManagement'.FTRA;
+require_once CORE.'Page'.DTRA.'JavascriptRessourceManagement'.FTRA;
+require_once CORE.'Page'.DTRA.'BrandRessourceManagement'.FTRA;
+require_once CORE.'Page'.DTRA.'SplashRessourceManagement'.FTRA;
 
 //Page Config & Meta
 require_once CORE.'Page/Meta.php'; $meta = new Meta($detect);
@@ -25,7 +33,7 @@ require_once CORE.'Page/Preloader.php'; $preloader = new Preloader($detect,$layo
 require_once CORE.'Page/Header.php'; $header = new Header($detect,$layout);
 require_once CORE.'Page/Navigation.php'; $navigation = new Navigation($detect,$layout);
 require_once CORE.'Page/Sections.php'; $sections = new Sections($detect,$layout);
-require_once CORE.'Page/Footer.php'; $footer = new Footer($detect,$layout,$vendor);
+require_once CORE.'Page/Footer.php'; $footer = new Footer($detect,$layout,$vendor,$navigation);
 
 class Page implements iPage, iContent {
 	

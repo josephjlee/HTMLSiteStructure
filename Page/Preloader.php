@@ -1,15 +1,27 @@
 <?php
 /**
- * DMOUNT REC PAGE PRELOADER
+ * CLASS :: PRELOADER
  * =====================
  *
- * Page Preloader is a ...
+ * Class Preloader is a ...
  *
  * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
  *
  * @version    0.0.1
  */
-class dmr_PagePreloader {
+namespace Dmount\HTMLSiteStructure;
+ 
+use Dmount\Core\{
+	HttpManagement\Mobile_Detect as Mobile_Detect
+};
+ 
+//Interface
+require_once CORE.'Page'.DINT.'Preloader'.FINT;
+ 
+class Preloader implements iPreloader, iContent {
+	
+	//
+	const USE_COMMENTS = true;
 	
 	//
 	public $detect, $layout;
@@ -19,12 +31,23 @@ class dmr_PagePreloader {
  *
  * @param 
  */
-	public function __construct($detect=NULL,$layout=NULL){
+	public function __construct(
+								Mobile_Detect $detect=NULL,
+								Layout $layout=NULL
+								)
+	{
 		
 		$this->detect = $detect;
 		$this->layout = $layout;
 		
 	}//Eof Construct
+
+/**
+ * Placeholder method
+ *
+ * @param 
+ */	
+	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
 
 /**
  * 
@@ -33,12 +56,12 @@ class dmr_PagePreloader {
  */
 	public function setContent(){
 		
-		return '<!-- bof preloader --!>
+		return "\t\t".'<!-- bof preloader -->'.PHP_EOL.
 				
-				<!-- eof preloader -->';
+			   "\t\t".'<!-- eof preloader -->'.PHP_EOL;
 		
 	}//Eof Method "setContent"
 	
-}//Eof Class "dmr_PagePreloader"
+}//Eof Class "Preloader"
 
 ?>
