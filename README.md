@@ -10,8 +10,11 @@ Actually, I decided to do my own work-around to output a well-formed HTML templa
 If you find something, you would change, please write. Nothing is perfect here and is on his way for a few more updates. I try to document all the things I took from other programms. Give me feedback, if you find something undocumented from a other programmer.
 
 ## License
-
 There's actually no license for this project.
+
+## Table of Contents:
+  1. Configuration (#configuration)
+  2. Namespaces (#namespaces)
 
 ## Configuration:
 First: It is optional to use it. It's for free, but it's not stable. Therefore I give no warranty for the usage of this code.
@@ -45,56 +48,81 @@ In the dir /core/ I put my HTMLSiteStructure and MobileDetect. Should look like 
 
 The file "/cms.php" is placed in the dir "/core/". This file includes some configuration settings.
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Namespaces
 
 My classes for HTMLSiteStructure are running under the namespace <b>Dmount\HTMLSiteStructure</b>.
 
 Other classes, outside of HTMLSiteStructure are named with <b>Dmount\Core</b>.
 
+**[⬆ back to top](#table-of-contents)**
 
 ## Classes
 
 Following classes are included in the package:
 
+**[⬆ back to top](#table-of-contents)**
+
 ### Footer
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Header
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Layout
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Meta
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Navigation
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Page
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Preloader
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Sections
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Theme
   
   Version: 0.0.1
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Vendor
   
   Version: 0.0.1
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Interfaces
 
@@ -107,7 +135,14 @@ Following classes are included in the package:
   - Layout.int.php
   - Meta.int.php
   - Navigation.int.php
-  - 
+  - Page.int.php
+  - Preloader.int.php
+  - Sections.int.php
+  - Splash.int.php
+  - Theme.int.php
+  - Vendor.int.php
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Traits
 
@@ -116,21 +151,28 @@ Following classes are included in the package:
   - JavascriptRessourceManagement
   - SplashRessourceManagement.php
   - VendorRessourceManagement.php
-  
+
+**[⬆ back to top](#table-of-contents)**
+
 ### BrandRessourceManagement
-  
+
+**[⬆ back to top](#table-of-contents)**
   
 ### HtmlRessourceManagement
-  
+
+**[⬆ back to top](#table-of-contents)**
   
 ### JavascriptRessourceManagement
 
+**[⬆ back to top](#table-of-contents)**
   
 ### SplashRessourceManagement
 
+**[⬆ back to top](#table-of-contents)**
   
 ### VendorRessourceManagement
 
+**[⬆ back to top](#table-of-contents)**
 
 ## CSS
 
@@ -150,6 +192,8 @@ Please put the css files below in "/default/":
   - splash-0.0.1.css
   - tabs-0.0.1.css
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Javascript
 
 - core.0.0.1.js
@@ -159,7 +203,11 @@ Please put the css files below in "/default/":
   - Tabs
   - Splash (not defined)
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Other 
 This project grows with the time and from now on I update the version, too. The structure of all classes are not really set yet and needs to be updated. 
 
 If something is unclear, please do not hesitate to contact me for further inquiries. From time to time I will update the documentation and the project as a whole.
+
+**[⬆ back to top](#table-of-contents)**
