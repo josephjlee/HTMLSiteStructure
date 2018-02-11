@@ -1,125 +1,98 @@
 <?php
 /**
- * CLASS :: FOOTER
+ * DMOUNT REC PAGE FOOTER
  * =====================
  *
- * Class Footer is a
+ * Page Footer is a
  *
  * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
  *
  * @version    0.0.1
  */
-namespace Dmount\HTMLSiteStructure;
-
-use Dmount\Core\{
-	HttpManagement\Mobile_Detect as Mobile_Detect
-};
- 
-//Loading interface & traits
-require_once CORE.'Page'.DINT.'Footer'.FINT;
-require_once CORE.'Page'.DINT.'Splash'.FINT;
-require_once CORE.'Page'.DINT.'Brand'.FINT;
-require_once CORE.'Page'.DINT.'jQuery'.FINT;
-require_once CORE.'Page'.DTRA.'JavascriptRessourceManagement'.FTRA;
-require_once CORE.'Page'.DTRA.'BrandRessourceManagement'.FTRA;
-require_once CORE.'Page'.DTRA.'SplashRessourceManagement'.FTRA;
-
-class Footer implements iFooter, iContent, iSplash, iBrand, jQuery {
-	
-	//Configuration
-	const USE_COMMENTS = false;
-	const USE_SPLASH = true;
-	const NAME_SPLASH = 'splash';
-	
-	//Var
-	public $pageId;//Need to fix: change name to headerContainerId
-	public $headerId; 
-	public $subtitleId; 
-	public $brandId;
+class dmr_PageFooter {
 	
 	//
-	private $animations=array();
-
-	//Class Objects
 	public $detect;
 	public $layout;
 	public $vendor;
-
-	//Trait		
-	use	RessourceManagement\SplashRessourceManagement,
-		RessourceManagement\BrandRessourceManagement,
-		RessourceManagement\JavaScriptRessourceManagement;
 
 /**
  * Construct an instance of this class
  *
  * @param 
  */
-	public function __construct(
-				    Mobile_Detect $detect=NULL,
-				    Layout $layout=NULL,
-				    Vendor $vendor=NULL
-				   )
-	{
+	public function __construct($detect=NULL,$layout=NULL,$vendor=NULL){
 		
 		$this->detect = $detect;
 		$this->layout = $layout;
 		$this->vendor = $vendor;
 		
-		$this->getPageID();
+		$this->setID();
 		
 	}//Eof Construct
 
 /**
- * Callback method for splash screen.
- * Get page id's from html body, when splash is used
- * otherwise set page id without the usage of splash
+ * 
  *
  * @param 
  */
-	public function getPageID(){
+	public function setID(){
 		
-		if(self::USE_SPLASH)
-		{
-			$this->setSplashID();
-		}
-		else $this->setPageID();
+		$this->pageIntroID = '#page-intro';
+		$this->pageIntroHeaderID = '#page-intro-header';
+		$this->pageSVGBrandID = '#page-svg-brand';
 		
-	}//Eof Method "getPageID"
+	}//Eof Method "setID"
 
 /**
- * Set page id's for header, brand and subtitle.
- * If splash is used, this method sets a pound for
- * the last tween in splash screen.
+ * 
  *
  * @param 
  */
-	public function setPageID(){
+	public function jQuery_DocReady(){
 		
-		$id='page';
-		$s='-';
-		$pound=(!self::USE_SPLASH)?'#':'';
-		$this->pageId = $pound.$id.$s.'header'.$s.'container';
-		$this->headerId = $pound.$id.$s.'header';
-		$this->subtitleId = $pound.$id.$s.'subtitle';
-		$this->brandId = $pound.$id.$s.'brand';
+		return '<script>
+				$(document).ready(function(){
+					const pageSVGBrand=new dmrLogo;
+					$(\''.$this->pageSVGBrandID.'\').animateCss(\'bounceInDown\',function(){
+						setTimeout(function(){						
+							$(\''.$this->pageSVGBrandID.'\').addClass(\'animated zoomOutLeft\');
+							$(\''.$this->pageSVGBrandID.'\').animateCss(\'zoomOutLeft\',function(){
+								$(\''.$this->pageSVGBrandID.'\').append(\'<p id="page-brand-text" class="fal fa-xs animated bounceInDown">DMOUNT RECORDS</p>\');
+								$(\''.$this->pageSVGBrandID.'\').animateCss(\'bounceInDown\',function(){
+									
+									$(\''.$this->pageSVGBrandID.'\').empty();
+									$(\''.$this->pageIntroID.'\').removeClass(\'pt50 mt0\');
+									$(\''.$this->pageIntroHeaderID.'\').removeClass(\'mt100\');
+									$(\''.$this->pageSVGBrandID.'\').removeClass(\'logo mt100 mb0 pb0\');
+									
+									$(\'#page-brand-text\').removeClass(\'animated bounceInDown zoomOutLeft\');
+									
+								});/* /eof animateCSS 3*/
+								
+								$(\''.$this->pageSVGBrandID.'\').removeClass(\'animated bounceInDown zoomOutLeft\');
+								
+							});/* /eof animateCSS 2*/
+	
+						},5000);/* /eof setTimeout*/
+						clearTimeout();
+					});/* /eof animateCSS 1*/
+				});/* /eof document.ready*/
+    			</script>';
 		
-	}//Eof Method "setPageID"
+	}//Eof Function "jQuery_DocReady"
 
 /**
- * Set the content.
- * Returns the jQuery document.ready functionality, if used
- * and let load the sources for javascript api, extensions and tools in group
- * sorted and described in vendor class
+ * 
  *
  * @param 
  */	
 	public function setContent(){
 
-		return $this->jQuery_DocReady($this->brand()).$this->vendor->setJS_Group('footer');
+		return $this->jQuery_DocReady().$this->vendor->setJS_Group('footer');
 		
 	}//Eof Method "setContent"
 	
-}//Eof Class "Footer"
+}//Eof Class "dmr_PageFooter"
 
 ?>

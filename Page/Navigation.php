@@ -1,27 +1,6 @@
 <?php
-/**
- * CLASS :: NAVIGATION
- * =====================
- *
- * Class Navigation is a ...
- *
- * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
- *
- * @version    0.0.1
- */
-namespace Dmount\HTMLSiteStructure;
 
-use Dmount\Core\{
-	HttpManagement\Mobile_Detect as Mobile_Detect
-};
-
-//Interface
-require_once CORE.'Page'.DINT.'Navigation'.FINT;
-
-class Navigation implements iNavigation, iContent {
-	
-	//Configuration
-	const USE_NAVBAR = false;
+class dmr_PageNavigation {
 	
 	//
 	public $detect, $layout;
@@ -31,32 +10,14 @@ class Navigation implements iNavigation, iContent {
  *
  * @param 
  */
-	public function __construct(
-								Mobile_Detect $detect=NULL,
-								Layout $layout=NULL
-								)
-	{
+	public function __construct($detect,$layout){
 		
 		$this->detect = $detect;
 		$this->layout = $layout;
 		
 	}//Eof Construct
-
-/**
- * 
- *
- * @param 
- */	
-	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
-
-/**
- * 
- *
- * @param 
- */	
+	
 	public function setContent(){
-		
-		if(self::USE_NAVBAR)
 		
 		return '<!-- bof navbar --!>
 				
@@ -72,8 +33,8 @@ class Navigation implements iNavigation, iContent {
 				
 				<!-- eof navbar -->';
 		
-	}//Eof Method "setContent"
+	}//Eof Method "setBar"
 	
-}//Eof Class "dm_PageNavigation"
+}//Eof Class "dmr_PageNavigation"
 
 ?>

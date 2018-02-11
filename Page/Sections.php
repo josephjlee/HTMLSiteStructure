@@ -1,24 +1,6 @@
 <?php
-/**
- * CLASS :: SECTIONS
- * =====================
- *
- * Class Sections is a ...
- *
- * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
- *
- * @version    0.0.1
- */
-namespace Dmount\HTMLSiteStructure;
 
-use Dmount\Core\{
-	HttpManagement\Mobile_Detect as Mobile_Detect
-};
-
-//Interface
-require_once CORE.'Page'.DINT.'Sections'.FINT;
-
-class Sections implements iSections, iContent {
+class dmr_PageSections {
 	
 	//
 	public $detect, $layout;
@@ -28,11 +10,7 @@ class Sections implements iSections, iContent {
  *
  * @param 
  */
-	public function __construct(
-								Mobile_Detect $detect=NULL,
-								Layout $layout=NULL
-								)
-	{
+	public function __construct($detect,$layout){
 		
 		$this->detect = $detect;
 		$this->layout = $layout;
@@ -43,22 +21,15 @@ class Sections implements iSections, iContent {
  * 
  *
  * @param 
- */	
-	public function setPageID(){/*ACTUALLY NOT DEFINED*/}//Eof Method "setPageID"
-
-/**
- * 
- *
- * @param 
  */
 	public function setContent(){
 		
-		return "\t\t".'<!-- bof sections -->'.PHP_EOL.
+		return '<!-- bof sections --!>
 				
-			   "\t\t".'<!-- eof sections -->'.PHP_EOL;
+				<!-- eof sections -->';
 		
 	}//Eof Method "setContent"
 	
-}//Eof Class "Section"
+}//Eof Class "dmr_PageSection"
 
 ?>

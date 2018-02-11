@@ -1,29 +1,19 @@
 <?php
 /**
- * CLASS :: THEME
+ * DMOUNT REC PAGE THEME
  * =====================
  *
- * Class Theme is a ...
+ * Page Theme is a ...
  *
  * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
  *
  * @version    0.0.1
  */
-namespace Dmount\HTMLSiteStructure;
-
-use Dmount\Core\{
-	HttpManagement\Mobile_Detect as Mobile_Detect
-};
-
-//Interface
-require_once CORE.'Page'.DINT.'Theme'.FINT;
- 
-class Theme implements iTheme {
+class dmr_PageTheme {
 
 	//
-	const FILE_CORE = 'core';
-	const FILE_DIR_CSS = '/assets/css/themes/';
-	const FILE_DIR_JS = '/assets/js/themes/';
+	const FILE_DIR_CSS = '/assets/static/css/themes/';
+	const FILE_DIR_JS = '/assets/static/js/themes/';
 
 	//
 	public $detect;
@@ -33,18 +23,11 @@ class Theme implements iTheme {
  *
  * @param 
  */
-	public function __construct(Mobile_Detect $detect=NULL){
+	public function __construct($detect=NULL){
 		
 		$this->detect=$detect;
 		
 	}//Eof Construct
-
-/**
- * Return static subdomain for assets
- *
- * @param 
- */
-	protected function subDomain(){return STATIC_SUBDOMAIN;}//Eof Method "subDomain"
 
 /**
  * 
@@ -53,9 +36,7 @@ class Theme implements iTheme {
  */
     public function setCSS(){
 	 
-        return "\t\t".'<link href="'.$this->subDomain().
-							 		 self::FILE_DIR_CSS.
-							 		 self::FILE_CORE.'-0.0.1.css" rel="stylesheet">'.PHP_EOL;
+        return '<link href="'.self::FILE_DIR_CSS.'dmr-core-0.0.1.css" rel="stylesheet">';
 		
     }//Eof Method "setCSS"
 
@@ -66,9 +47,7 @@ class Theme implements iTheme {
  */
 	public function setJS(){
 		
-		return "\t\t".'<script src="'.$this->subDomain().
-							  		  self::FILE_DIR_JS.
-							  		  self::FILE_CORE.'-0.0.1.js"></script>'.PHP_EOL;
+		return '<script src="'.self::FILE_DIR_JS.'dmr-logo-0.0.1.js"></script>';
 		
 	}//Eof Method "setJS"
 
@@ -83,5 +62,5 @@ class Theme implements iTheme {
 		
 	}//Eof Method "setSource"
 	
-}//Eof Class "Theme"
+}//Eof Class "dmr_PageTheme"
 ?>
