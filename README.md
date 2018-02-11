@@ -10,19 +10,19 @@ Actually, I decided to do my own work-around to output a well-formed HTML templa
 If you find something, you would change, please write. Nothing is perfect here and is on his way for a few more updates. I try to document all the things I took from other programms. Give me feedback, if you find something undocumented from a other programmer.
 
 ## Table of Contents:
-  1. [Configuration] (#configuration)
-  1. [Namespaces] (#namespaces)
-  1. [Classes] (#classes)
-  2. [Footer] (#footer)
-  2. [Header] (#header)
-  2. [Layout] (#layout)
-  2. [Meta] (#meta)
-  2. [Navigation] (#navigation)
-  2. [Page] (#page)
-  2. [Preloader] (#preloader)
-  2. [Sections] (#sections)
-  2. [Theme] (#theme)
-  2. [Vendor] (#vendor)
+  1. [Configuration](#configuration)
+  1. [Namespaces](#namespaces)
+  1. [Classes](#classes)
+  2. [Footer](#footer)
+  2. [Header](#header)
+  2. [Layout](#layout)
+  2. [Meta](#meta)
+  2. [Navigation](#navigation)
+  2. [Page](#page)
+  2. [Preloader](#preloader)
+  2. [Sections](#sections)
+  2. [Theme](#theme)
+  2. [Vendor](#vendor)
 
 ## Configuration:
 First: It is optional to use it. It's for free, but it's not stable. Therefore I give no warranty for the usage of this code.
