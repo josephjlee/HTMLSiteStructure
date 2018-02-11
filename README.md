@@ -56,43 +56,43 @@ Other classes, outside of HTMLSiteStructure are named with <b>Dmount\Core</b>.
 
 Following classes are included in the package:
 
-# Footer
+### Footer
   
   Version: 0.0.1
   
-# Header
+### Header
   
   Version: 0.0.1
   
-# Layout
+### Layout
   
   Version: 0.0.1
   
-# Meta
+### Meta
   
   Version: 0.0.1
   
-# Navigation
+### Navigation
   
   Version: 0.0.1
   
-# Page
+### Page
   
   Version: 0.0.1
   
-# Preloader
+### Preloader
   
   Version: 0.0.1
   
-# Sections
+### Sections
   
   Version: 0.0.1
   
-# Theme
+### Theme
   
   Version: 0.0.1
   
-# Vendor
+### Vendor
   
   Version: 0.0.1
 
