@@ -3,7 +3,7 @@
  * LAYOUT :: INTERFACE
  * =====================
  *
- * Interface for layout is a ...
+ * Layout Interface is a ...
  *
  * @author     Original author: Salvatore Gonda <salvatore.gonda@web.de>       
  *
