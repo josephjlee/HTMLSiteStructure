@@ -1,25 +1,31 @@
-
 //ECMA 5
 'use strict';
 
-/*Encapsulate Object in Anonymous Function*/
-/*(function() {
-window.Header = Header || {};
-window.Brand = Brand || {};
-window.Tabs = Tabs || {};
-window.Splash = Splash || {};
-}) (window);
-
-*/
-
-function Header(){};
-
 /*
+* Encapsulate Object in Anonymous Function
+* The "big" question at time
+*/
+/*(function() {}) (window);*/
+
+/********************************************
+*
+* Header object
+* Author: Salvatore Gonda <salvatore.gonda@web.de>
+* Note: not defined, but due to error when preloading,
+*		may there is a proxy needed
+*
+********************************************/
+function Header(){};
+window.Header = Header || {};
+
+/********************************************
+*
 * Brand object
 * Author: Salvatore Gonda <salvatore.gonda@web.de>
-*/
-function Brand(width,height,bid,sid,use){
-	
+*
+********************************************/
+function Brand(width,height,bid,sid,use)
+{
 	var width=width;// integer
 	var height=height;//integer
 	var brandID=bid;// string, ex: page-brand
@@ -34,20 +40,17 @@ function Brand(width,height,bid,sid,use){
 	return this;
 };
 
-//Lazy loading
-Brand.prototype.init = function(width,height,brandid,useSplash,id,clrCircle,clrPath,strlcPath,strwPath,clrStrokeGroup) {
-	this.onload(width,height,brandid,useSplash,id,clrCircle,clrPath,strlcPath,strwPath,clrStrokeGroup);
-};
-
-Brand.prototype.setID = function(brandid,useSplash,splashID) {
-	if(useSplash === true)
-		var id=splashID;
-	else var id=brandid;
-	return id;
-};
-
-/*create circle element*/
-Brand.prototype.elCircle = function(fill) {
+/*
+* Static methods for svg output:
+* Note: not all arguments are defined
+*		maybe define a new object for svg elements
+* 	- circle
+*	- path
+*	- group
+*	- svg
+*/
+Brand.circle = function(fill) 
+{
 	var circle = document.createElement('circle');
 	circle.setAttribute('cx','29.442');
 	circle.setAttribute('cy','18.133');
@@ -56,8 +59,8 @@ Brand.prototype.elCircle = function(fill) {
 	return circle;
 };
 
-/*create path element*/
-Brand.prototype.elPath = function(fill,strlc,strw) {
+Brand.path = function(fill,strlc,strw) 
+{
 	var path = document.createElement('path');
 	path.setAttribute('fill',fill);
 	path.setAttribute('stroke-linecap',strlc);
@@ -66,16 +69,16 @@ Brand.prototype.elPath = function(fill,strlc,strw) {
 	return path;
 };
 
-/*create group element*/
-Brand.prototype.elGroup = function(stroke) {
+Brand.group = function(stroke) 
+{
 	var group = document.createElement('g');
 	group.setAttribute('id','svg-group-brand');
 	group.setAttribute('stroke',stroke);
 	return group;
 };
 
-/*create svg element*/
-Brand.prototype.elSVG = function(width,height) {
+Brand.svg = function(width,height) 
+{
 	var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
 	svg.setAttribute('id', 'svg-brand');
 	svg.setAttribute('viewbox', '0 0 '+width+' '+height);
@@ -84,15 +87,36 @@ Brand.prototype.elSVG = function(width,height) {
 	return svg;
 };
 
+/*
+* Brand object instances
+* 	- init
+*	- id
+*	- onload
+*/
+
+//Lazy loading
+Brand.prototype.init = function(width,height,brandid,useSplash,id,clrCircle,clrPath,strlcPath,strwPath,clrStrokeGroup) 
+{
+	this.onload(width,height,brandid,useSplash,id,clrCircle,clrPath,strlcPath,strwPath,clrStrokeGroup);
+};
+
+Brand.prototype.id = function(brandid,useSplash,splashID)
+{
+	if(useSplash === true)
+		var id=splashID;
+	else var id=brandid;
+	return id;
+};
+
 /*Higher-order method: create svg logo with onload*/
-Brand.prototype.onload = function(width,height,brandid,useSplash,splashID,clrCircle,clrPath,strlcPath,strwPath,clrStrokeGroup) {
-	
+Brand.prototype.onload = function(width,height,brandid,useSplash,splashID,clrCircle,clrPath,strlcPath,strwPath,clrStrokeGroup)
+{
 	//define
-	var id = this.setID(brandid,useSplash,splashID);
-	var group = this.elGroup(clrStrokeGroup);
-	var path = this.elPath(clrPath,strlcPath,strwPath);
-	var circle = this.elCircle(clrCircle);
-	var svg = this.elSVG(width,height);
+	var id = this.id(brandid,useSplash,splashID);
+	var group = Brand.group(clrStrokeGroup);
+	var path = Brand.path(clrPath,strlcPath,strwPath);
+	var circle = Brand.circle(clrCircle);
+	var svg = Brand.svg(width,height);
 
 	//append
 	group.appendChild(path);
@@ -101,18 +125,35 @@ Brand.prototype.onload = function(width,height,brandid,useSplash,splashID,clrCir
 	
 	//serialize
 	var XMLS = new XMLSerializer(); // initialize object
-	var brandXMLS = XMLS.serializeToString(svg); // convert DOM node into string
+	var img = XMLS.serializeToString(svg); // convert DOM node into string
+	this.id = document.getElementById(id);
 	
-	//insert svg element with AdjacentHTML
-	document.getElementById(id).insertAdjacentHTML('afterbegin',brandXMLS);
-	return;
+	//prepend insertAdjacentHTML of null error
+	//Note: need to fix
+	//		error seen on safari and chrome, when reloading with open console
+	//		html header is not loading from php file; may cache problems
+	if(this.id === null){
+		return;
+	}
+	else
+	{
+		//insert svg element at afterbegin of id with AdjacentHTML
+		document.getElementById(id).insertAdjacentHTML('afterbegin',img);
+		return;
+	}
 };
 
-/*
+window.Brand = Brand || {};
+
+/*******************************************
+*
 * Tabs object
 * Author: Salvatore Gonda <salvatore.gonda@web.de>
-*/
-function Tabs(id,index,cls){
+* 
+********************************************/
+function Tabs(id,index,cls)
+{
+	//define
 	var id=id;
 	var index=index;
 	var clsUl=cls[0];//tabs
@@ -122,19 +163,22 @@ function Tabs(id,index,cls){
 	return this;
 };
 
-//Lazy loading
-Tabs.prototype.init = function(id,index,clsUl,clsLi,clsAnim){
-	this.onload(id,index,clsUl,clsLi,clsAnim);
-};
-
-Tabs.prototype.elUnorderedList = function(clsUl){
+/*
+* Static methods for html output:
+* Note: not all arguments are defined
+*		maybe define a new object for html elements
+* 	- ul (unordered list)
+*	- li (list element)
+*/
+Tabs.unorderedlist = function(clsUl)
+{
 	var ul = document.createElement('ul');
 	ul.setAttribute('class',clsUl);
 	return ul;	
 };
 
-Tabs.prototype.elList = function(index,clsLi,clsAnim){
-	
+Tabs.list = function(index,clsLi,clsAnim)
+{
 	var index=index;
 	var len=index.length;
 	var fragment=document.createDocumentFragment();
@@ -151,16 +195,32 @@ Tabs.prototype.elList = function(index,clsLi,clsAnim){
 	return fragment;
 };
 
+/*
+* Tabs object instances
+* 	- init
+*	- onload
+*/
+//Lazy loading
+Tabs.prototype.init = function(id,index,clsUl,clsLi,clsAnim){
+	this.onload(id,index,clsUl,clsLi,clsAnim);
+};
+
 Tabs.prototype.onload = function(id,index,clsUl,clsLi,clsAnim){
-	var ul = this.elUnorderedList(clsUl),
-		li = this.elList(index,clsLi,clsAnim);	
+	var ul = Tabs.unorderedlist(clsUl),
+		li = Tabs.list(index,clsLi,clsAnim);
+	//Note: need to fix
+	//when brand is not loading, ul can't appendChild (is of null)
 	ul.appendChild(li);
 	document.getElementById(id).appendChild(ul);
 	return;
 };
 
+window.Tabs = Tabs || {};
+
 /*
 * Splash object
 * Author: Salvatore Gonda <salvatore.gonda@web.de>
+* Note: define all the statements, put in document.ready, here
 */
 function Splash(){};
+window.Splash = Splash || {};
